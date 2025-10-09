@@ -112,3 +112,47 @@ $$
 ~={yellow}As such, the knapsack problem is a (binary) integer linear program.=~
 
 ### Portfolio optimization
+Suppose we have a portfolio of n di!erent assets. For each of them, we have the expected return $\mu_j$, usually obtained by averaging some historical data. The risk of the investment is encoded by the covariance matrix R of our assets, again obtained from some historical analysis. We want to optimize our portfolio, i.e., decide which percentage of our budget to allocate to each asset, in order to obtain at least a target average return $\rho$, at the minimum risk. Using continuous variables $x_j$ to encode the percentage of our budget to allocate to asset j, we get the model:
+$$
+\begin{aligned}
+min \space x^TRx \\
+\sum^n_{j=1} \mu_j x_j \geq \rho \\
+\sum^n_{j=1} x_j = 1 \\
+0 \leq x_j \leq 1 \quad j=1,...,n
+\end{aligned}
+$$
+This is a convex optimization problem, as the covariance matrix is positive semidefinite by construction.
+
+### LQR
+We have a discrete-time linear system described by state equations:
+$$
+x_{t+1} = Ax_t + Bu_t
+$$
+We assume starting conditions $x_0 = x_{init}$ and a finite horizon T. Inthis setting, we want to compute the control sequence $U=[u_0,...,u_{T-1}]$ such that:
+- $x_0,x_1,...,x_T$ is small (good control); 
+- $u_0,u_1,...,u_{T-1}$ is small (small effort);
+We can assume matrix Q to be symmetric and positive semidefinite, while matrix R is symmetric and positive definite. Note that matrices Q and R act Again, we assume the matrices as relative weights to combine good control and small effort. 
+Overall, this optimal control problem can thus be formulated as:
+$$
+\begin{align}
+min \space J(U) = \sum^{T-1}_{t=0}(x_t^TQx_t + u_t^TRu_t) + x_t^TQx_T \\
+x_{t+1} = Ax_t + Bu_t \quad t=0,...,T-1 \\
+x_0 = x_{init}
+\end{align}
+$$
+ By imposing simple bounds on the state and control variables:
+ $$
+ \begin{align}
+	 \underline{x} \leq x \leq \bar{x} \\
+	 \underline{u} \leq u \leq \bar{u} 
+ \end{align}
+ $$
+This alone prevents the usage of the closed form described above, and requires the solution of the problem as a (convex) quadratic program. Another type of change is replacing the quadratic norm in the objective: for example, suppose that we want to minimize the $l_\infty$ norms of x and u.The optimization problem reads:
+$$
+\begin{align}
+min \space ||X||_{\infty} + ||U||_{\infty} \\
+x_{t+1} = Ax_t+Bu_t \quad \underline{x} \leq x \leq \bar{x}\\
+x_0 = x_{init} \quad \underline{u} \leq u \leq \bar{u}
+\end{align}
+$$
+with $X=[x_0,...,x_T]$. Despite its appearance, this can actually be formu lated as a linear program, because minimizing the ε↔ norm of a vector can be encoded in a linear problem with some artificial variables and constraints.
