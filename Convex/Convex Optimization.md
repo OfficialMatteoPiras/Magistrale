@@ -216,3 +216,18 @@ The following sets are easily shown to be convex:
 
 ![[Basic simple sets.png|300]]
 
+#### Calculus of convex sets
+Here is a list of the most common convexity-preserving operators:
+1. ~={yellow}Intersection=~: Given an arbitrary family A of convex sets, their intersection $C= \bigcap_{a\in A}C_a$ is a convex set
+	eg: te positive semidefinite con $S_{+}^{n} can be expressed as: $\bigcap_{z \neq 0}\{X\in S^n | z^T Xz \geq 0\}$
+2. ~={yellow}Affine functions:=~ Let $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be an affine function, i.e., $f(x)=Ax+b$ for some $A \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$. ThenifS is a convex set, then so are:
+	$$
+	\begin{align}
+	f(S)={f(x) | x \in S} \\
+	f^{-1}(S)={x | f(x) \in S}
+	\end{align}
+	$$
+3. ~={yellow}Product:=~ Given $C1 \subseteq \mathbb{R}^{n_1}$ and $C_2 \subseteq \mathbb{R}^{n_2}$ convex sets, their (cartesian) product $C_1 \times C_2 \subseteq \mathbb{R}^{n_1+n_2}$ is also convex.
+4. ~={yellow}Linear combinations.=~ Given $M_1,...,M_k$ convex sets in $\mathbb{R}^n$ and arbitrary multipliers $\lambda_1,...,\lambda_k$ the set $\sum^{k}_{i=1}\lambda_i M_i$ is a convex set
+5. ~={yellow}Projection=~: Let $S \in \mathbb{R}^m \times \mathbb{R}^n$ be a convex set. Then its projection $T =proj_{\mathbb{R}^m}(S) = \{x\in \mathbb{R}^m | (x,y) \in S for some y \in \mathbb{R}^n\}$ is a convex set
+
