@@ -227,7 +227,147 @@ Here is a list of the most common convexity-preserving operators:
 	f^{-1}(S)={x | f(x) \in S}
 	\end{align}
 	$$
-3. ~={yellow}Product:=~ Given $C1 \subseteq \mathbb{R}^{n_1}$ and $C_2 \subseteq \mathbb{R}^{n_2}$ convex sets, their (cartesian) product $C_1 \times C_2 \subseteq \mathbb{R}^{n_1+n_2}$ is also convex.
+3. ~={yellow}Product:=~ Given $C1 \subseteq \mathbb{R}^{n_1}$ and $C_2 \subseteq \mathbb{R}^{n_2}$ convex sets, their (cartesian) product $C_1 \times C_2 \subseteq \mathbb{R}^{n_1+n_2}$ is also convex. 
+		![[product.png|300]]
 4. ~={yellow}Linear combinations.=~ Given $M_1,...,M_k$ convex sets in $\mathbb{R}^n$ and arbitrary multipliers $\lambda_1,...,\lambda_k$ the set $\sum^{k}_{i=1}\lambda_i M_i$ is a convex set
-5. ~={yellow}Projection=~: Let $S \in \mathbb{R}^m \times \mathbb{R}^n$ be a convex set. Then its projection $T =proj_{\mathbb{R}^m}(S) = \{x\in \mathbb{R}^m | (x,y) \in S for some y \in \mathbb{R}^n\}$ is a convex set
+5. ~={yellow}Projection=~: Let $S \in \mathbb{R}^m \times \mathbb{R}^n$ be a convex set. Then its projection $T =proj_{\mathbb{R}^m}(S) = \{x\in \mathbb{R}^m | (x,y) \in S \space \text{for some} \space y \in \mathbb{R}^n\}$ is a convex set
+		![[Projection.png|300]]
+	
+#### Topological properties
+For any subset $M \in \mathbb{R}^n$ we have the natural relations: $relint(M) \subseteq M \subseteq cl(M)$. However, the inclusions can be very non tight on pathological sets.
 
+For convex sets, things are much nicer. In particular, if M is a convex set, then: 
+- $relint(M)$, $int(M)$ and $cl(M)$ are all convex sets; 
+- $M \neq \emptyset \rightarrow relint(M) \neq \emptyset$
+- $cl(M)=cl(relint(M))$ 
+- $relint(M)=relint(cl(M))$
+~={yellow}If M is convex set, $x \in relint(M)$ and $y \in cl(M)$, then we have that the whole segment $[x,y) \subseteq relint(M)$.=~
+
+#### Separation Theorem
+~={green}Let C and D be non-empty convex sets that do not intersect ($C \subseteq D = \emptyset$). Then there exists a separating hyperplane, i.e., there exist $a \in \mathbb{R}^n$, $a \neq 0$ and $b \in R$, such that:
+$$
+\begin{align}
+a^Tx\leq b \forall x \in C \\
+a^Tx\geq b \forall x \in D
+\end{align}
+$$
+In order to prove this fundamental result, we need a few intermediate lemmas.=~
+
+**Lemma 1**
+Let $A \subseteq \mathbb{R}^n$ be a non-empty set. Define the function $f : \mathbb{R}^n \rightarrow \mathbb{R}$ 
+$$
+f(x)=d(x,A)=\text{inf}_{y\in A} ||x-y||
+$$
+as the distance between a point x and the set A. Then f is continuous.
+
+*Proof  lemma 1*
+Let $x,y \in \mathbb{R}^n$ and $z \in A$. By definition of distance we have:
+$$
+d(x,A) \leq d(x,z) \leq d(x,y) + d(y,z)
+$$
+By taking the infimum w.r.t. $z \in A$ on both sides we get:
+$$
+\begin{align}
+d(x,A) \leq d(x,y) + d(y,A) \\
+d(y,A) \leq d(x,y) + d(x,A) 
+\end{align}
+$$
+Now, combining the two we obtain:
+$$
+||d(x,A) - d(y,A)|| \leq d(x,y)
+$$
+As $d(x,y) \rightarrow 0$, so does $||f(x)-f(y)||$, and thus f is continuous.
+
+**Lemma 2**
+Let $A \in \mathbb{R}^n$ be a non-empty closed set, and let $y \notin A$. Then there exists $\bar{x} \in A$ at minimum distance, i.e.,
+$$
+d(y,A) = d(y,\bar{x}) \leq d(y,x) \forall x \in A
+$$
+*Proof lemma 2*
+Since $A \neq \emptyset$ ,there exists $\hat{x} \in A \space \text{s.t.} \space d(y,A) \leq d(y,\hat{x})$. Now, let’s define the set: 
+$$
+A' = A \cap \{x|d(x,y) \leq d(y,\hat{x})\}
+$$
+Since A' is bounded and closed we can call it compact.
+Note that by construction $d(y,A')=d(y,A)$. By definition A' is closed and bounded, while by the previous lemma $f(x)=d(x,A')$ is continuous: by the Weierstrass theorem it attains its minimum on A'.
+
+![[lemma 2 separation theorem.png|300]]
+
+**Lemma 3**
+If C is a closed set and D is closed and bounded (i.e., compact), and both are non-empty, then there exist $x \in C$ and $y \in D$ such that $d(x,y)= d(C,D)$.
+
+*Proof lemma 3*
+Let $f : D \rightarrow R$ be defined as $f(z)=d(z,C)$. Since D is compact, and f is continuous, then again by Weierstrass there exists $y \in D$ such that $d(D,C)=d(y,C)$. By the previous lemma, since C is closed, there exists $x \in C$such that:
+$$
+d(x,y) = d(y,C) = d(C,D)
+$$
+![[Pasted image 20251010163352.png|300]]
+
+**(Enanched) Separation Theorem**
+Let C and D be non-empty closed convex sets that do not intersect, with one one of them being compact. Then there exists a separating hyperplane, i.e., there exists $a \in \mathbb{R}^n$,a ↘=0and $b \in R$, such that:
+$$
+\begin{align}
+a^Tx \leq b \quad \forall x \in C \\
+a^Tx \geq b \quad \forall x \in D
+\end{align}
+$$
+The geometrical interpretation is given below.
+![[Pasted image 20251010164025.png|300]]
+
+*Proof*
+Consider the set $C - D:$ this is a linear combination of two convex sets, and thus convex itself. Also, clearly 0 $0 \notin C - D$, as the sets do not intersect. Now, there are two cases:
+$$
+\begin{align*}
+a &= d - c \\
+b &= \frac{(d - c)^T (d + c)}{2} = \frac{||d||^2 - ||c||^2}{2}
+\end{align*}
+$$
+case 1)  $C - D$ is closed. Thus, we can separate by Proposition above $C - D$ from $0$: let a be the corresponding hyperplane (clearly, we can pick $b = 0$).
+$$
+a^T(x-y) \leq 0 \quad \forall x \in C \quad \forall y \in D
+$$
+But then we can easily construct a separating hyperplane for C and D as: 
+$$
+a^Tx \leq \sup_{x\in C} a^Tx \leq \inf_{y \in D} a^Ty \leq a^Ty
+$$
+case 2) $C - D$ is not closed.
+		a) If $0 \notin cl(C - D)$, then we can repeat the construction from the previous point and separate $0$ from $cl(C - D)$, and thus C from D.
+		b) if $0 \in cl(C - D)$ 
+				Consider a sequence of points ${x_k}\rightarrow 0$ converging to 0 from the outside of $cl(C - D)$ . Let then $y_k$ be the corresponding points of minimum This sequence always exists as 0 distance of xk w.r.t. $cl(C - D)$.  Each $x_k$ can be separated by $cl(C - D)$ for a geometrical representation of the construction. Define the normalized separating hyperplane vector as:
+				$$
+				a_k = \frac{y_k - x_k}{||y_k - x_k||}
+				$$
+				![[Pasted image 20251010170212.png|200]]
+
+#### Convex Functions
+A function $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is convex if its domain $domf$ is a convex set and for all $x,y \in domf$ and for all $0 \leq \sigma \leq 1$ we have :
+$$
+f(\sigma x + (1-\sigma)y) \leq \sigma f(x) + (1-\sigma) f(y)
+$$
+![[Jensen’s inequality.png|300]]
+
+There is a strong relation between convex sets and convex functions. An equivalent definition of convex function could indeed be: a function f is convex iff its epigraph 
+$$
+epif = {(x,t) \in \mathbb{R}^{n+1} | x \in domf, t \geq f(x)} 
+$$
+is a convex set.
+
+~={yellow}A function $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is concave if - f is convex.=~
+Note that any affine function is both convex and concave.
+We can give a list of basic functions that are easily shown to be convex by just using the definition. 
+- $e^{ax}$ is convex on $\mathbb{R}$ for any $a \in \mathbb{R}$; 
+- $x^a$ is convex on $R_{++}$ if $a \geq 1$ and $a \leq 0$, and concave if $0 \leq a \leq 1$;
+- $|x|^p$ is convex on $\mathbb{R}$ for $p \geq 1$; 
+- $log(x)$ is concave on $R_{++}$; 
+- any norm on $\mathbb{R}^n$ is convex; 
+- the max function $f(x) = max{x_1,...,x_n}$ is convex
+#### Calculus of convex functions
+As with convex sets, it is often more convenient to show a function to be convex by showing that it can be obtained from simpler convex functions through convexity-preserving operations. 
+1. *Non-negative weighted sum*. Given $f_1,...,f_n$ convex functions and $\omega_1,...,\omega_n \geq 0$ non-negative weights, the function $f = \sum^{n}_{i=1}w_if_i$ is a convex function.
+2. *Composition with affine mappings*. If $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is a convex function, $A \in \mathbb{R}^{n\times m}$ and $b \rightarrow \mathbb{R}^n$. Then the composite function $g : \mathbb{R}^m \rightarrow \mathbb{R} = f(Ax+b)$ is a convex function.
+3. *Pointwise maximum and supremum.* If $f_1$ and $f_2$ are convex functions, their pointwise maximum $f(x)=max\{f1(x),f2(x)\}$ is a convex function. This extends to any finite number of convex functions $f_1,...,f_k$, and even to infinitely many by taking the supremum. In other words, given an arbitrary family A of convex functions, then the pointwise supremum:
+		$$
+		g(x) = \sup_{a\in A} f_a(x)
+		$$
+	is a convex function.![[pointwise maximum and suprimum.png|300]]
+4. *Partial minimization.* If f(x,y) is a convex function and C is a convex set, then $g(x)=\inf_{y\in C} f(x,y)$ is convex function.

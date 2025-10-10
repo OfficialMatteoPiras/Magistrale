@@ -25,6 +25,18 @@
                   "icon": "lucide-file",
                   "title": "Convex Optimization"
                 }
+              },
+              {
+                "id": "7c0d83b065825bdd",
+                "type": "leaf",
+                "state": {
+                  "type": "excalidraw",
+                  "state": {
+                    "file": "Excalidraw/pointwise maximum and suprimum.md"
+                  },
+                  "icon": "excalidraw-icon",
+                  "title": "pointwise maximum and suprimum"
+                }
               }
             ]
           },
@@ -45,18 +57,6 @@
                   },
                   "icon": "lucide-file",
                   "title": "Convex Optimization"
-                }
-              },
-              {
-                "id": "4f88125f7eccba63",
-                "type": "leaf",
-                "state": {
-                  "type": "image",
-                  "state": {
-                    "file": "Excalidraw/convex hull ex.png"
-                  },
-                  "icon": "lucide-image",
-                  "title": "convex hull ex"
                 }
               }
             ]
@@ -213,23 +213,29 @@
   },
   "active": "9bf2b84d8ae5acad",
   "lastOpenFiles": [
-    "Excalidraw/convex comb example.png",
+    "Excalidraw/pointwise maximum and suprimum.md",
+    "Excalidraw/pointwise maximum and suprimum.png",
     "Convex/Convex Optimization.md",
+    "Excalidraw/Jensen’s inequality.md",
+    "Excalidraw/Jensen’s inequality.png",
+    "Excalidraw/Drawing 2025-10-10 17.17.09.excalidraw.png",
+    "Pasted Image 20251010172435_955.png",
+    "Pasted Image 20251010172139_074.png",
+    "Pasted image 20251010171705.png",
+    "Pasted image 20251010170212.png",
+    "Pasted image 20251010170209.png",
+    "Pasted image 20251010164025.png",
+    "Pasted image 20251010163352.png",
+    "Excalidraw/lemma 2 separation theorem.md",
+    "Excalidraw/Projection.md",
+    "Excalidraw/product.md",
     "Excalidraw/Basic simple sets.md",
-    "Excalidraw/Basic simple sets.png",
-    "Excalidraw/convex hull ex.png",
     "Excalidraw/convex hull ex.md",
-    "Pasted Image 20251009234915_925.png",
     "Excalidraw/convex comb example.md",
     "Probability Review.md",
-    "Pasted image 20251009233900.png",
-    "Pasted image 20251009225716.png",
     "Excalidraw/convex line endpoint.md",
-    "Excalidraw/convex line endpoint.png",
     "Excalidraw/affine examples.md",
-    "Excalidraw/affine examples.png",
     "Excalidraw/affine_line.md",
-    "Excalidraw/affine_line.png",
     "Untitled.canvas",
     "Untitled 1.canvas",
     "Excalidraw",
