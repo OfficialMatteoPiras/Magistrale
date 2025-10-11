@@ -369,5 +369,6 @@ As with convex sets, it is often more convenient to show a function to be convex
 		$$
 		g(x) = \sup_{a\in A} f_a(x)
 		$$
-	is a convex function.![[pointwise maximum and suprimum.png|300]]
+	is a convex function.
+	![[pointwise maximum and suprimum.png|300]]
 4. *Partial minimization.* If f(x,y) is a convex function and C is a convex set, then $g(x)=\inf_{y\in C} f(x,y)$ is convex function.
