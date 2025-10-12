@@ -1,4 +1,22 @@
-## Introduction
+- [[#Introduction|Introduction]]
+	- [[#Introduction#Optimization Problem|Optimization Problem]]
+	- [[#Introduction#Linear Programming (LP)|Linear Programming (LP)]]
+	- [[#Introduction#Integer Linear Programming (MIP)|Integer Linear Programming (MIP)]]
+	- [[#Introduction#Convex Optimization|Convex Optimization]]
+		- [[#Convex Optimization#Example -> Diet problem|Example -> Diet problem]]
+	- [[#Introduction#Knapsack problem|Knapsack problem]]
+	- [[#Introduction#Portfolio optimization|Portfolio optimization]]
+	- [[#Introduction#LQR|LQR]]
+- [[#Convexity|Convexity]]
+	- [[#Convexity#Affine Combinations|Affine Combinations]]
+	- [[#Convexity#Convex Sets|Convex Sets]]
+	- [[#Convexity#Calculus of convex sets|Calculus of convex sets]]
+	- [[#Convexity#Topological properties|Topological properties]]
+	- [[#Convexity#Separation Theorem|Separation Theorem]]
+	- [[#Convexity#Convex Functions|Convex Functions]]
+	- [[#Convexity#Calculus of convex functions|Calculus of convex functions]]
+
+### Introduction
 #### Optimization Problem
 An optimization problem (or model) P can be generally expressed as:
 $$
@@ -73,7 +91,7 @@ where f(x) and all $g_i(x)$ are required to be convex functions.
 
 ~={yellow}Note that we can combine the two extensions (convexity and integrality), and obtain what is called mixed integer convex programming (or convex mixed integer nonlinear programming)=~
 
-##### Example $\rightarrow$ Diet problem
+##### Example -> Diet problem
 Afarmer wants to determine the minimum cost diet for their animals, with the constraint that certain minimal nutritional requirements are met. There are n foods to choose from on the market, each with a unit cost $c_j$. The nutritional requirements consider m basic nutrients, each with a minimum quantity $b_i$. We finally denote with $a_{ij}$ the amount of nutrient i in a unit of food j. 
 Data recap:
 $$
@@ -158,7 +176,7 @@ x_0 = x_{init} \quad \underline{u} \leq u \leq \bar{u}
 $$
 with $X=[x_0,...,x_T]$. Despite its appearance, this can actually be formu lated as a linear program, because minimizing the ε↔ norm of a vector can be encoded in a linear problem with some artificial variables and constraints.
 
-# Convexity
+###  Convexity
 #### Affine Combinations
 ~={yellow}Given two points $x,y \in \mathbb{R}^n$, we call affne combination the point obtained as $y = \sigma_1x +\sigma_2y$ for any two multipliers $\sigma_1,\sigma_2 \in \mathbb{R}$  satisfying the condition $\sigma_1 + \sigma_2 = 1$. =~
 

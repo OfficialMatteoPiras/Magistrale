@@ -2,5 +2,10 @@
   "fast-text-color",
   "better-export-pdf",
   "better-mathjax",
-  "obsidian-excalidraw-plugin"
+  "obsidian-excalidraw-plugin",
+  "obsidian-plugin-toc",
+  "table-editor-obsidian",
+  "image-converter",
+  "oz-image-plugin",
+  "obsidian-banners"
 ]
