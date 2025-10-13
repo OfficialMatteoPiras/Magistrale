@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3b9cadbbdbc40b0e",
+        "id": "7e33c30784878521",
         "type": "tabs",
         "children": [
           {
-            "id": "e0798825fe06c88f",
+            "id": "4ca8b4fed6816c98",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -182,10 +182,27 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e0798825fe06c88f",
+  "active": "4ca8b4fed6816c98",
   "lastOpenFiles": [
-    "img/Pasted image 20251012160926.png",
+    "Excalidraw/raw/convex line endpoint.md",
+    "Excalidraw/raw/convex hull ex.md",
+    "Excalidraw/raw/convex comb example.md",
+    "Excalidraw/raw/Basic simple sets.md",
+    "Excalidraw/raw/affine_line.md",
+    "Excalidraw/raw/affine examples.md",
+    "Excalidraw/raw/Projection.md",
+    "Excalidraw/raw/product.md",
+    "Excalidraw/raw/pointwise maximum and suprimum.md",
+    "Excalidraw/raw/lemma 2 separation theorem.md",
+    "Excalidraw/raw/Jensen’s inequality.md",
+    "Excalidraw/raw/Drawing 2025-10-12 16.37.36.excalidraw.md",
+    "Excalidraw/raw/Drawing 2025-10-12 16.37.35.excalidraw.md",
+    "Excalidraw/raw",
+    "Excalidraw/png/affine examples.png",
+    "Excalidraw/png/affine_line.png",
     "ML/MACHINE LEARNING.md",
+    "Excalidraw/png",
+    "img/Pasted image 20251012160926.png",
     "img/image.png",
     "img",
     "img/image-6.png",
@@ -195,8 +212,6 @@
     "img/image-2.png",
     "img/image-1.png",
     "Convex/Convex Optimization.md",
-    "img/Pasted image 20251012165938.png",
-    "img/Pasted image 20251012165902.png",
     "Excalidraw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Excalidraw/Drawing 2025-10-12 16.37.35.excalidraw.md",
     "ML/MACHINE LEARNING.pdf",
@@ -210,9 +225,6 @@
     "Excalidraw/Basic simple sets.md",
     "Excalidraw/convex comb example.md",
     "Probability Review.md",
-    "Excalidraw/convex line endpoint.md",
-    "Excalidraw/affine examples.md",
-    "Excalidraw/affine_line.md",
     "Untitled.canvas",
     "Untitled 1.canvas",
     "Excalidraw",
