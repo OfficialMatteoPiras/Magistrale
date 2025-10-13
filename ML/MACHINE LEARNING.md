@@ -161,3 +161,5 @@ then $\mathbb{P}[L_D(\hat{h}_S)>\epsilon]<\delta$
 
  This means that if the equation is satisfied, then the rule has an error greater than $\epsilon$  con una probabilità minore di $\delta$.
 #### Uniform Convergence & Agnostic PAC-Learning
+
+
