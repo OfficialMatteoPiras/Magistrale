@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "7e33c30784878521",
+        "id": "c4ce9d9416cd4c4c",
         "type": "tabs",
         "children": [
           {
-            "id": "4ca8b4fed6816c98",
+            "id": "f7e26c5f357cd7ae",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ML/MACHINE LEARNING.md",
+                "file": "ML/Machine Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MACHINE LEARNING"
+              "title": "Machine Learning"
             }
           }
         ]
@@ -162,7 +162,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -182,8 +182,19 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "4ca8b4fed6816c98",
+  "active": "f7e26c5f357cd7ae",
   "lastOpenFiles": [
+    "image.png",
+    "ML/Machine Learning.md",
+    "Riassunto simboli.md",
+    "ML/Machine Learning Nomenclature and Symbols.md",
+    "img/image 3.png",
+    "img/image 2.png",
+    "Probability Review.md",
+    "img/image 1.png",
+    "img/image-2 1.png",
+    "img/image-1 1.png",
+    "Excalidraw/raw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Excalidraw/raw/convex line endpoint.md",
     "Excalidraw/raw/convex hull ex.md",
     "Excalidraw/raw/convex comb example.md",
@@ -195,22 +206,15 @@
     "Excalidraw/raw/pointwise maximum and suprimum.md",
     "Excalidraw/raw/lemma 2 separation theorem.md",
     "Excalidraw/raw/Jensen’s inequality.md",
-    "Excalidraw/raw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Excalidraw/raw/Drawing 2025-10-12 16.37.35.excalidraw.md",
     "Excalidraw/raw",
     "Excalidraw/png/affine examples.png",
     "Excalidraw/png/affine_line.png",
-    "ML/MACHINE LEARNING.md",
     "Excalidraw/png",
     "img/Pasted image 20251012160926.png",
     "img/image.png",
     "img",
     "img/image-6.png",
-    "img/image-5.png",
-    "img/image-4.png",
-    "img/image-3.png",
-    "img/image-2.png",
-    "img/image-1.png",
     "Convex/Convex Optimization.md",
     "Excalidraw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Excalidraw/Drawing 2025-10-12 16.37.35.excalidraw.md",
@@ -221,10 +225,6 @@
     "Excalidraw/Jensen’s inequality.md",
     "Excalidraw/lemma 2 separation theorem.md",
     "Excalidraw/Projection.md",
-    "Excalidraw/product.md",
-    "Excalidraw/Basic simple sets.md",
-    "Excalidraw/convex comb example.md",
-    "Probability Review.md",
     "Untitled.canvas",
     "Untitled 1.canvas",
     "Excalidraw",
