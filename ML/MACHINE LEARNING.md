@@ -12,7 +12,11 @@
 - [[#Binary Classification Problem with Fine Model Classes|Binary Classification Problem with Fine Model Classes]]
 - [[#Uniform Convergence & Agnostic PAC-Learning|Uniform Convergence & Agnostic PAC-Learning]]
 	- [[#Uniform Convergence & Agnostic PAC-Learning#Main Steps to Follow|Main Steps to Follow]]
-
+	- [[#Uniform Convergence & Agnostic PAC-Learning#Uniform Convergence|Uniform Convergence]]
+- [[#Linear models & Classification Problem|Linear models & Classification Problem]]
+	- [[#Linear models & Classification Problem#Linear Models For Prediction|Linear Models For Prediction]]
+		- [[#Linear Models For Prediction#Simplest case:|Simplest case:]]
+		- [[#Linear Models For Prediction#General Case:|General Case:]]
 
 #### Introduction
 Machine Learning $\rightarrow$ model to predict what comes next by using tokens (tokens $\equiv \mathbb{R}$ numbers / vectors created from a word)
@@ -293,9 +297,9 @@ we can conclude that: $Var(ax) = a^2Var(x)$ if a=const $\in \mathbb{R}$
 ##### Uniform Convergence
 *Question*: can we guarantee that
 $\mathbb{P}[\forall h, |L_s(h) - L_D(h)| < \epsilon]>1-\delta$ = same number of data m $\forall h \in H$
-![[image.png|315x144]]
+![[image 4.png|315x144]]
 
-**Proposition:** if $m>\frac{1}{2\epsilon^2}log(2\frac{|H|}{\delta})$ then $\mathbb{P}[\exists h | L_S(h)-L_D(h)|>\epsilon]<\delta$ where $\delta = 2e^{-m^*\epsilon^2}$
+**Proposition:** if $m>\frac{1}{2\epsilon^2}log(2\frac{|H|}{\delta})$ then $\mathbb{P}[\exists h | L_S(h)-L_D(h)|>\epsilon]<\delta$ where $\delta = 2e^{-m^*\epsilon^2}$ (see proof below to understand this last relation)
 To do the proof we need these two results:
 1. *Hoeffding Lemma:* 
 	Let x random value, $x \in [a,b]$ (with probability 1), i.e. $x=\mu$, then: 
@@ -305,3 +309,65 @@ To do the proof we need these two results:
 	1. $\mathbb{P}[\sum_{i=1}^{m}x_i - m\mu > \epsilon] < e^{\frac{2\epsilon^2}{m(b-a)^2}}$
 	2.  $\mathbb{P}[|\sum_{i=1}^{m}x_i - m\mu| > \epsilon] < 2 e^{\frac{2\epsilon^2}{m(b-a)^2}}$
 **Proof**
+fixed $h\in H$, $\mathbb{P}[|L_S(h)-L_D(h)>\epsilon|]<$ ? where $L_S(h)=\frac{1}{m}\sum_{i=1}^{m}l(h_i,z_i)$ and $L_D(h)=\mathbb{E}[l(h,z)]$
+consider $l(h,z)$ as a binary classification problem, such that: $l(h,z)\in\{0,1\}$. 
+$$
+\begin{align}
+\mathbb{P}[\bigcup_{h\in H}S:|L_S(h)-L_D(h)|>\epsilon] \leq \sum_{h\in H}\mathbb{P}&\underbrace{[|L_S(h)-L_D(h)|>\epsilon]}_{\leq 2e^{-2m\epsilon^2}} \leq 2 |H| e^{-2m\epsilon^2} \\
+m^* \text{ s.t. } 2|H|e^{-2m^*\epsilon^2} &= \delta \\
+2m^*\epsilon^2=log(2\frac{|H|}{\delta}) \\
+\text{S is }\epsilon-\text{representative} 
+\end{align}
+$$
+we want to guarantee that $\mathbb{P}[L_D(\hat{h}_S)>L_S(h^* + \epsilon)<\delta]$ ie 
+$$
+m>\frac{2}{\epsilon^2}log(2\frac{|H|}{\delta})
+$$
+
+#### Linear models & Classification Problem
+![[image 5.png]]
+##### Linear Models For Prediction
+Given $z_i=(x_i,y_i)$ where $x_i\in \mathbb{R}^d$ and $y_i\in \mathbb{R}$, and the class of model $H=\{h(x)=w^Tx+b, \space w\in\mathbb{R}^d, \space b\in\mathbb{R}\}$ we can defile the loss function (error on the "drawing" of the line / "the minimum distance point-line") as: $l(h,z) = (y-h(x))^2 = |y-h(x)|$ as the *square loss*
+
+By remembering that the ERM is defined by:
+$$
+\begin{align}
+\hat{h}_S\in argmin_{h\in H}\underbrace{L_S(h)}_{=\frac{1}{m}\sum_{i=1}^{m}l(h,z_i)} &\rightarrow \hat{h}_{w,b}\in argmin_{h\in H}\frac{1}{m}\sum_{i=1}^{m}y-\underbrace{h(x_i)}_{w^Tx+b} \\
+&\rightarrow \hat{h}_{\hat{w},\hat{b}}(x) = \hat{w}^Tx+\hat{b} \\
+\text{ which brings us to }&\rightarrow \hat{w},\hat{b} \in argmin_{\substack{w\in\mathbb{R}^d \\ b\in \mathbb{R}}}\sum_{i=1}^{m}(y_i-w^Tx_i-b)^2
+\end{align}
+$$
+*Remark:* to make the notation simpler:
+$$
+\begin{align}
+\bar{x} &:= \begin{bmatrix}x\\1\end{bmatrix} \in \mathbb{R}^{d+1} \\
+\bar{w} &:= \begin{bmatrix}w\\b\end{bmatrix} \\
+h_{w,b}(x) := w^Tx+b &= \begin{bmatrix}w^T & b\end{bmatrix}\begin{bmatrix}x\\1\end{bmatrix} = \bar{w}^T \bar{x}
+\end{align}
+$$
+To simplify notation $\bar{x}$ will be called $x$ and $\bar{w}$ will be called $w$.
+###### Simplest case
+Given: $w\in \mathbb{R}$ and $x_i\in \mathbb{R}$
+such that: $L_S(w)=\frac{1}{m} \sum_{i=1}^{m}(y_i-wx_i)^2$
+
+![[image 6.png|372x202]]
+
+$$
+\begin{align}
+\text{given: } & x\in \mathbb{R} \\
+\hat{w}_S &= argmin_{w\in \mathbb{R}}\frac{1}{m}\sum_{i=1}^{m}\underbrace{(y_i-w_xi)^2}_{y_i^2+w^2x_i^2-2y_iwx_i} \\
+&\text{we can write } y_i^2+w^2x_i^2-2y_iwx_i \text{ as:}\\
+\frac{1}{m}&[\sum_{i=1}^{m}y_i^2] + w^2[\frac{1}{m}\sum_{i=1}^{m}x_i^2] - 2[\frac{1}{m}\sum_{i=1}^{m}x_iy_i]w
+\end{align}
+$$
+
+$\hat{w}_S$ is the unique solution to: $\frac{dL_S(w)}{dw}=0$
+$$
+\begin{align}
+\frac{L_S(w)}{dw} &= \frac{1}{m}\sum_{i=1}^{m}2(y_i-wx_i)\underbrace{\frac{d}{dy}(y_i+wx_i)}_{x_i} = -\frac{2}{m}\sum_{i=1}^{m}(y_ix_i-w_ix_i^2) \\
+\rightarrow & -\cancel{\frac{2}{m}}[\sum_{i=1}^{m}(y_ix_i) - w[\sum_{i=1}^{m}(x_i^2)] = 0 \\
+\Rrightarrow & \hat{w}_S = (\sum_{i=1}^{m}(x_i^2))^{-1} \sum_{i=1}^{m}(y_ix_i) 
+\end{align} 
+$$
+###### General Case
+Given $x \in \mathbb{R}^d$ and $w \in \mathbb{R}^d$ and 

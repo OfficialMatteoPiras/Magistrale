@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 280
   },
   "right": {
     "id": "96e7914df53882f4",
@@ -179,13 +179,19 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "obsidian-excalidraw-plugin:New drawing": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "omnisearch:Omnisearch": false
     }
   },
   "active": "f7e26c5f357cd7ae",
   "lastOpenFiles": [
-    "image.png",
     "ML/Machine Learning.md",
+    "img/image 6.png",
+    "Convex/Convex Optimization.md",
+    "Excalidraw/raw/polyhedron.md",
+    "Excalidraw/png/polyhedron.png",
+    "img/image 5.png",
+    "img/image 4.png",
     "Riassunto simboli.md",
     "ML/Machine Learning Nomenclature and Symbols.md",
     "img/image 3.png",
@@ -209,13 +215,8 @@
     "Excalidraw/raw/Drawing 2025-10-12 16.37.35.excalidraw.md",
     "Excalidraw/raw",
     "Excalidraw/png/affine examples.png",
-    "Excalidraw/png/affine_line.png",
     "Excalidraw/png",
-    "img/Pasted image 20251012160926.png",
-    "img/image.png",
     "img",
-    "img/image-6.png",
-    "Convex/Convex Optimization.md",
     "Excalidraw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Excalidraw/Drawing 2025-10-12 16.37.35.excalidraw.md",
     "ML/MACHINE LEARNING.pdf",
@@ -224,7 +225,6 @@
     "ML",
     "Excalidraw/Jensen’s inequality.md",
     "Excalidraw/lemma 2 separation theorem.md",
-    "Excalidraw/Projection.md",
     "Untitled.canvas",
     "Untitled 1.canvas",
     "Excalidraw",

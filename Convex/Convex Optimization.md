@@ -15,6 +15,15 @@
 	- [[#Convexity#Separation Theorem|Separation Theorem]]
 	- [[#Convexity#Convex Functions|Convex Functions]]
 	- [[#Convexity#Calculus of convex functions|Calculus of convex functions]]
+- [[#Convex Programming|Convex Programming]]
+	- [[#Convex Programming#Definition Vertex|Definition Vertex]]
+	- [[#Convex Programming#Theorem (Minkowski Weyl)|Theorem (Minkowski Weyl)]]
+		- [[#Theorem (Minkowski Weyl)#Corollary|Corollary]]
+	- [[#Convex Programming#Proof|Proof]]
+	- [[#Convex Programming#Standard form|Standard form]]
+	- [[#Convex Programming#Bases|Bases]]
+	- [[#Convex Programming#Theorem Bases: Vertex|Theorem Bases: Vertex]]
+		- [[#Theorem Bases: Vertex#Proof|Proof]]
 
 ### Introduction
 #### Optimization Problem
@@ -390,3 +399,102 @@ As with convex sets, it is often more convenient to show a function to be convex
 	is a convex function.
 	![[pointwise maximum and suprimum.png|300]]
 4. *Partial minimization.* If f(x,y) is a convex function and C is a convex set, then $g(x)=\inf_{y\in C} f(x,y)$ is convex function.
+
+### Convex Programming
+
+It is a special case of convex programming that can be written as:
+$$
+\begin{cases}
+&\min c^Tx\\
+&a^T_ix \sim b_i\quad\qquad i=1\dots m\quad \sim\in\{\leq, =, \geq\}&\text{by necessity linear}\\
+&l_j\leq x_j\leq u_j\qquad l_j\in \mathbb{R}\cup\{-\infty\}\quad u_j\in \mathbb{R}\cup\{+\infty\}&\text{linear}
+\end{cases}
+$$
+$<$ and $>$ are not allowed, and since these are linear functions, it is possible to invert the function to find the maximum, as it remains linear.
+
+
+It does not have many uses in itself, but it can be used to solve other types of problems.
+- linear equality$\rightarrow$ hyperplane
+- linear inequality $\rightarrow$ halfspace
+- feasible region of a linear program is a polyhedron
+
+polyhedron is the unbounded version of polytope.
+#### Definition Vertex
+
+A vertex is a point of the polyhedron that cannot be represented as a strict combination of the points of $P$.
+
+Given a list of vertices, the unique polyhedron can be obtained.
+![[polyhedron.png]]
+#### Theorem (Minkowski Weyl)
+Every point of the polytope can be expressed as a convex combination of its vertices.
+This does not apply to polyhedrons.
+
+In other words, a polytope can be described in two different ways:
+- $H$: the intersection of its linear constraints
+- $V$: its vertices
+##### Corollary
+If the feasible set $P$ of a linear program is bounded and non-empty, then there exists at least one optimal vertex.
+#### Proof
+- $x_1\dots x_k$ the vertices
+- $y\in P$ an arbitrary feasible solution
+- $z^*=\min \{c^T x^i : i=1\dots k\}$
+$$
+\begin{align}
+c^Ty&=c^T\left(\sum_{i=1}^k\lambda_ix^i\right)\\
+&=\sum_{i=1}^k\lambda_i(c^Tx^i)\geq\sum_{i=1}^k\lambda_iz^*\\
+\end{align}
+$$
+- $\sum_{i=1}^k\lambda_i$ is equal to $1$ since we are in a special case of *convex program*
+$$
+c^Ty\geq z^*
+$$
+#### Standard form
+
+$$
+\begin{cases}
+&\min c^Tx\\
+&Ax=b\quad \text{no loss of generality}\\
+&x\geq 0
+\end{cases}
+$$
+
+- $a^Tx\geq b$ can be rewritten as $a^Tx+s=b$ at the cost of introducing a variable $s=b-a^Tx\geq 0$
+- $x\geq g$ can be seen as $x-g\geq 0$
+- A variable $x_j$ that has no restrictions can be expressed as two non-negative variables $x_j=x_j^+-x_j^-$ with $x_j^+,x_j^-\geq 0$
+
+We can also say that the number of columns is greater than or equal to the number of rows in the matrix.$m\leq n$
+This means that we have more variables than equations.
+The matrix $A$ has $rank(A)=m$
+
+#### Bases
+A basis is defined as the set of $m$ linearly independent columns
+- $\mathcal B=\{k_1,\dots,k_m\}$ the set of independent columns
+- $B$ the matrix formed by the columns of the basis
+
+- $\mathcal R$ the columns not present in the basis
+- $R$ the matrix formed by the columns of $\mathcal R$
+
+We can therefore rewrite the problem as:
+$$
+\begin {align}
+Ax&=b\\
+Bx_B+Rx_R&=b\\
+B^{-1}(Bx_B+Rx_R)&=B^{-1}b\\
+x_B&=B^{-1}b-BRx_R
+\end{align}
+$$
+If $x_R =0$, we obtain
+- *basic solution*: $x_B=B^{-1}b$
+- *basic feasible solution*: if the non-negativity constraint is also satisfied
+#### Theorem Bases: Vertex
+
+A point $x\in\mathbb R^n$ is the vertex of a non-empty polyhedron
+$$P=\{x|Ax=b,x\geq0\} \iff x \text{ is a b.f.s. of the system } Ax=b$$
+##### Proof
+- $x$ is a b.f.s. associated with a basis $B$
+- it is a set of variables (not vectors)
+- we can permute $B$ to obtain the positive values of $x$ on the first $k$ columns
+$$
+x=[x_1\dots x_k,0\dots 0]^T
+$$
+- since $k<m$ a variable of the basis can be 0. When this happens, we say that the basis is *degenerate*
