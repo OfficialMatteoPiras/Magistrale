@@ -23,7 +23,14 @@
 	- [[#Convex Programming#Standard form|Standard form]]
 	- [[#Convex Programming#Bases|Bases]]
 	- [[#Convex Programming#Theorem Bases: Vertex|Theorem Bases: Vertex]]
+		- [[#Theorem Bases: Vertex#Corollary|Corollary]]
 		- [[#Theorem Bases: Vertex#Proof|Proof]]
+- [[#Primal Simplex|Primal Simplex]]
+	- [[#Primal Simplex#Optimality conditions|Optimality conditions]]
+	- [[#Primal Simplex#Finding a better basis|Finding a better basis]]
+	- [[#Primal Simplex#How much can it increase?|How much can it increase?]]
+		- [[#How much can it increase?#Ratio test|Ratio test]]
+
 
 ### Introduction
 #### Optimization Problem
@@ -83,6 +90,7 @@ $$
 \end{equation}
 $$
 If J = N we have a pure integer program, otherwise we have a mixed integer linear program. Of course, if  $J=\emptyset$  we are back to linear programming.
+
 
 #### Convex Optimization
 The other direction in which we can extend linear programming is, obviously, nonlinearity. We must be cautious in this direction, though, as allowing arbitrary nonlinearities in the objective (and/or constraints), still gives an intractable problem. It turns out, however, that if we restrict to **convex functions** and constraints, then we can recover most (but not all) of the nice properties of LP, while still giving a very meaningful extension to the paradigm. In general we have the form:
@@ -185,6 +193,7 @@ x_0 = x_{init} \quad \underline{u} \leq u \leq \bar{u}
 $$
 with $X=[x_0,...,x_T]$. Despite its appearance, this can actually be formu lated as a linear program, because minimizing the ε↔ norm of a vector can be encoded in a linear problem with some artificial variables and constraints.
 
+--------
 ###  Convexity
 #### Affine Combinations
 ~={yellow}Given two points $x,y \in \mathbb{R}^n$, we call affne combination the point obtained as $y = \sigma_1x +\sigma_2y$ for any two multipliers $\sigma_1,\sigma_2 \in \mathbb{R}$  satisfying the condition $\sigma_1 + \sigma_2 = 1$. =~
@@ -399,7 +408,7 @@ As with convex sets, it is often more convenient to show a function to be convex
 	is a convex function.
 	![[pointwise maximum and suprimum.png|300]]
 4. *Partial minimization.* If f(x,y) is a convex function and C is a convex set, then $g(x)=\inf_{y\in C} f(x,y)$ is convex function.
-
+---------
 ### Convex Programming
 
 It is a special case of convex programming that can be written as:
@@ -490,6 +499,8 @@ If $x_R =0$, we obtain
 
 A point $x\in\mathbb R^n$ is the vertex of a non-empty polyhedron
 $$P=\{x|Ax=b,x\geq0\} \iff x \text{ is a b.f.s. of the system } Ax=b$$
+##### Corollary
+If the feasible set $P$ of a linear program is bounded and non-empty, then there exists at least one b.f.s.
 ##### Proof
 - $x$ is a b.f.s. associated with a basis $B$
 - it is a set of variables (not vectors)
@@ -498,3 +509,118 @@ $$
 x=[x_1\dots x_k,0\dots 0]^T
 $$
 - since $k<m$ a variable of the basis can be 0. When this happens, we say that the basis is *degenerate*
+ ~={red}ATTENTION=~: it is a variable ($x_B$) not the column
+- Let $A_1\dots A_K$ be the columns associated with $x_1\dots x_k$ that are part of the basis; they are linearly independent.
+	$A_1x_1+A_2x_2+\dots+A_kx_k=b$  $\Leftarrow$ Now, by contradiction, let us say that $x$ is not a vertex,
+i.e., $\exists y,z \in P$ and $\lambda\in(0,1)$  such that
+$$
+x=\lambda y+(1-\lambda)z
+$$
+Since all variables of $y,z$ must be non-negative and their convex combination must be $x$, we have that the last $n-k$ components of $y,z$ are 0
+$$
+y=[y_1\dots y_k,0\dots 0]^T
+\qquad
+z=[z_1\dots z_k,0\dots 0]^T
+$$
+And being solutions of the linear system:
+$$
+\begin{align}
+&A_1y_1+A_2y_2+\ldots+A_ky_k=b\\
+&A_1z_1+A_2z_2+\ldots+A_kz_k=b\\
+\\
+&A_1(y_1-z_1)+\ldots+A_k(y_k-z_k)=b\\
+&A_1\alpha_1+\ldots+A_k\alpha_k=b
+\end{align}
+$$
+So we have found a vector $\alpha\neq0$ that proves that $A_1,\ldots,A_k$ are linearly dependent, which is a contradiction of what we were looking for  
+
+Let's assume that $x$ is a vertex and, as before, with permutations we obtain the following formula:
+$$
+x=[x_1\dots x_k,0\dots 0]^T
+$$
+The difference from before is that now we cannot assume that $k\leq m$  at the moment.
+Since a vertex is a feasible solution of the system, we have:
+$$A_1x_1+A_2x_2+\dots+A_kx_k=b$$
+Now we have two cases:
+- The columns $A_1,\ldots,A_k$ are linearly independent ( $k=0$ ).
+    In this case, we have that $k\leq m$ and by choosing another $m-k$  linearly independent columns (always possible because $A$ has rank $m$) we can form a basis
+	$B=[A_1,\ldots,A_k,A_{k+1},\ldots,A_m]$ 
+    and the b.f.s. is exactly $x$  
+- The columns $A_1,\ldots,A_k$ are linearly dependent
+	Therefore, there exists $\alpha\neq 0$ such that: $A_1\alpha_1+\ldots+A_k\alpha_k=b$
+     Now let's add and subtract this equation multiplied by $\varepsilon$, obtaining:
+	 $$
+    \begin{align} A_1(x_1+\varepsilon\alpha_1)+A_2(x_2+\varepsilon\alpha_2)+\dots+A_k(x_k+\varepsilon\alpha_k)=b\\
+	A_1(x_1-\varepsilon\alpha_1)+A_2(x_2-\varepsilon\alpha_2)+\dots+A_k(x_k-\varepsilon\alpha_k)=b\\
+    \end{align}
+     $$
+    $\varepsilon$ serves to ensure that $x_i\pm\alpha_i>0$  and therefore we resize $\alpha_i$
+	proceeding, we obtain that
+- $x+\varepsilon\alpha=y$ 
+- $x-\varepsilon\alpha=z$ 
+This would imply that $x=\frac1 2 y+\frac 1 2 z$, which is impossible since $x$ is a vertex. This second case cannot happen, and this concludes the proof.
+---------
+### Primal Simplex
+The idea behind this algorithm is:
+- Start from a feasible basis $B$ of the linear problem
+- Move to adjacent bases (or vertices) until we reach an optimal basis
+
+To move to a basis, set one column to 0 and add another with a better cost, as we will see later
+
+![[PrimalSimplex|500]]
+
+[[Convex Set#Global optimality theorem|Since it is convex, if you find a local minimum, it is a global minimum]]
+To formalize the algorithm, we need to find:
+- how to recognize an optimal basis (optimality conditions)
+- how to move to a better adjacent basis 
+
+#### Optimality conditions
+From the [[Linear Programming#Bases|basic definition]], we can write the objective function $z$:
+$$
+\begin{align}
+z&=c_B^Tx_B+c_R^Tx_R\\
+&=\underbrace{c_B^TB^{-1}}_{\pi^T}b+\underbrace{(c_R^T-c_B^TB^{-1}R)}_{d_j}x_R\\
+&=\underbrace{\pi^Tb}_{constant}+\underbrace{d_jx_R}_{\text{lin. fun.}}
+\end{align}
+$$
+So now the objective function is expressed as a constant term plus a linear function of the variables not belonging to the basis
+$\pi^T=c_B^TB^{-1}$ is called the *vector of multiplierism* and allows the definition of the coefficient $d_j=c_R^T-\pi^TR$ called *reduced cost*.
+- The reduced cost of variables belonging to the basis is always $0$.
+- The reduced cost of variables not belonging to the basis gives an *optimality condition* for the current basis
+
+Given that $z= constant+d_jx_R$, we can see that $z$ increases or decreases if $d_j > or < 0$ .
+To understand the concept:
+$z=\pi^Tb+\sum_{j\in N}d_jx_j$ where:
+- $d_j$ are all the possible directions we can take
+- $x_j$ is 0 unless I decide to follow that direction
+- $\pi^Tb$ is the current basis
+
+![[spostamentobasi|300]]
+
+We can conclude that if $d_j\geq0\quad\forall j\in \mathcal R$ there is no way to reduce $z$ and therefore the basis we are in is optimal
+#### Finding a better basis
+If the current basis does not satisfy the *optimality condition*, then there exists a variable $x_q$ not belonging to the basis with a negative reduced cost $d_q<0$.
+We can therefore increase $x_q$ until
+The larger $x_q$ is, the smaller $z$ will be and therefore the better
+- we continue to satisfy $Bx_B+Rx_R=b$
+- the variables of the basis are non-negative
+
+Let's call $t\geq0$ the value of $x_q$. Knowing that all variables not belonging to the basis remain at 0, we can write:
+$$
+Bx_B(t)+tA_q=b
+$$
+$$
+\begin{align}
+x_B(t)&=B^{-1}b-tb^{-1}A_q\\
+&=\beta-t\alpha_q
+\end{align}
+$$
+
+where:
+- $\beta=B^{-1}b$
+- $\alpha_q=B^{-1}A_q$
+#### How much can it increase?
+In order to maintain the feasibility of the basis variables, the following must hold:
+$$x_B^i(t)=\beta_i-t\alpha_q^i\geq 0$$
+##### Ratio test
+Given:$$\mathcal I =\{i\in\set{1,\dots,m}|x_q^i>0\}$$we can calculate the maximum value of $t$ as:

@@ -15,8 +15,9 @@
 	- [[#Uniform Convergence & Agnostic PAC-Learning#Uniform Convergence|Uniform Convergence]]
 - [[#Linear models & Classification Problem|Linear models & Classification Problem]]
 	- [[#Linear models & Classification Problem#Linear Models For Prediction|Linear Models For Prediction]]
-		- [[#Linear Models For Prediction#Simplest case:|Simplest case:]]
-		- [[#Linear Models For Prediction#General Case:|General Case:]]
+		- [[#Linear Models For Prediction#Simplest case|Simplest case]]
+		- [[#Linear Models For Prediction#General Case|General Case]]
+	- [[#Linear models & Classification Problem#Errors|Errors]]
 
 #### Introduction
 Machine Learning $\rightarrow$ model to predict what comes next by using tokens (tokens $\equiv \mathbb{R}$ numbers / vectors created from a word)
@@ -69,7 +70,7 @@ There can be different types of output:
 
 #### A gentle start
 ##### Binary Classification
-Inputs: $x \in X (=\mathbb{R^d})$  is the *domani set*
+Inputs: $x \in X (=\mathbb{R^d})$  is the *domain set*
 Outputs: $y \in Y \rightarrow \{0,1\}$ 
 Training set: $S=\{z_i=(x_i,y_i) \space i=1,...,n\}$ 
 
@@ -370,4 +371,36 @@ $$
 \end{align} 
 $$
 ###### General Case
-Given $x \in \mathbb{R}^d$ and $w \in \mathbb{R}^d$ and 
+Given $x \in \mathbb{R}^d$ and $w \in \mathbb{R}^d$ such that:
+$$
+\hat{w}_S = argmin_{w\in\mathbb{R}^d} \frac{1}{m}(y_i-\underbrace{w^T}_{\begin{bmatrix}... & ... \end{bmatrix}}\underbrace{x_i}_{\begin{bmatrix}...\\...\end{bmatrix}})^2
+$$
+than $\nabla{w}L_S(w)=0$ is the minimum point $\hat{w}_S$ is the unique solution to this equation.
+$$
+\nabla{w}L_S(w)=\begin{bmatrix}\frac{\partial L_S}{\partial w_1}\\...\\\frac{\partial L_S}{\partial w_d}\end{bmatrix} = 0
+$$
+We need to compute:
+$$
+\begin{align}
+\frac{\partial L_S}{\partial w_j} & = \frac{\partial}{\partial w_j}[\frac{1}{m}\sum_{i=1}^{m}(y_i-w^Tx_i)^2] = \\
+&= \frac{1}{m}\sum_{i=1}^{m}2(y_i-w^Tx_i)\underbrace{-[[x_i]_j]}_{-\frac{\partial}{\partial w_k}(w^Tx_i)} \\
+&= - \frac{2}{m}\sum_{i=1}^{m}(y_i-w^Tx_i)[x]_j
+\end{align}
+$$
+By expanding this relation we can arrive to:
+$$
+\begin{align}
+\nabla{w}L_S(w)&=\frac{2}{m}(\sum_{i=1}^{m}y_ix_i-(\sum_{i=1}^{m}x_ix_i^T)w) = \\
+\Rrightarrow \underbrace{\nabla{w}L_S(w)}_{\in\mathbb{R}^d} &= -\frac{2}{m}[\underbrace{\sum_{i=1}^{m}y_ix_i}_{\in\mathbb{R}^d}-(\underbrace{\sum_{i=1}^{m}x_ix_i^T}_{\in R^{d\times d}})\underbrace{w}_{\in\mathbb{R}^d}]
+\end{align}
+$$
+![[image 7.png|passages to the result above]]
+![[image 8.png|359x221]]
+
+same computation with "vector-matrix" notation:
+$$
+Y=\begin{bmatrix}y_1\\...\\y_m\end{bmatrix} \in \mathbb{R}^n
+\quad
+X=\begin{bmatrix}x_1^T\\...\\x_m^T\end{bmatrix}\in \mathbb{R}^{m\times d}
+$$
+##### Errors
