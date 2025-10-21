@@ -542,11 +542,11 @@ The difference from before is that now we cannot assume that $k\leq m$  at the m
 Since a vertex is a feasible solution of the system, we have:
 $$A_1x_1+A_2x_2+\dots+A_kx_k=b$$
 Now we have two cases:
-- The columns $A_1,\ldots,A_k$ are linearly independent ( $k=0$ ).
+1. The columns $A_1,\ldots,A_k$ are linearly independent ( $k=0$ ).
     In this case, we have that $k\leq m$ and by choosing another $m-k$  linearly independent columns (always possible because $A$ has rank $m$) we can form a basis
 	$B=[A_1,\ldots,A_k,A_{k+1},\ldots,A_m]$ 
     and the b.f.s. is exactly $x$  
-- The columns $A_1,\ldots,A_k$ are linearly dependent
+2. The columns $A_1,\ldots,A_k$ are linearly dependent
 	Therefore, there exists $\alpha\neq 0$ such that: $A_1\alpha_1+\ldots+A_k\alpha_k=b$
      Now let's add and subtract this equation multiplied by $\varepsilon$, obtaining:
 	 $$
@@ -555,10 +555,11 @@ Now we have two cases:
     \end{align}
      $$
     $\varepsilon$ serves to ensure that $x_i\pm\alpha_i>0$  and therefore we resize $\alpha_i$
-	proceeding, we obtain that
-- $x+\varepsilon\alpha=y$ 
-- $x-\varepsilon\alpha=z$ 
-This would imply that $x=\frac1 2 y+\frac 1 2 z$, which is impossible since $x$ is a vertex. This second case cannot happen, and this concludes the proof.
+	proceeding, we obtain that:
+	- $x+\varepsilon\alpha=y$ 
+	- $x-\varepsilon\alpha=z$ 
+This would imply that $x=\frac1 2 y+\frac 1 2 z$, which is impossible since $x$ is a vertex. This ~={yellow}second case =~cannot happen, and this concludes the proof.
+
 ---------
 ### Primal Simplex
 The idea behind this algorithm is:
@@ -597,7 +598,7 @@ $z=\pi^Tb+\sum_{j\in N}d_jx_j$ where:
 
 ![[spostamentobasi|300]]
 
-We can conclude that if $d_j\geq0\quad\forall j\in \mathcal R$ there is no way to reduce $z$ and therefore the basis we are in is optimal
+We can conclude that if $d_j\geq0\quad\forall j\in \mathbb R$ there is no way to reduce $z$ and therefore the basis we are in is optimal
 #### Finding a better basis
 If the current basis does not satisfy the *optimality condition*, then there exists a variable $x_q$ not belonging to the basis with a negative reduced cost $d_q<0$.
 We can therefore increase $x_q$ until
@@ -624,3 +625,14 @@ In order to maintain the feasibility of the basis variables, the following must 
 $$x_B^i(t)=\beta_i-t\alpha_q^i\geq 0$$
 ##### Ratio test
 Given:$$\mathcal I =\{i\in\set{1,\dots,m}|x_q^i>0\}$$we can calculate the maximum value of $t$ as:
+$$
+\theta=\frac {\beta_p}{\alpha_q^p}=\min_{i\in\mathcal I}\set {\frac {\beta_i}{\alpha_q^i}}
+$$
+
+The p-th variable is the *blocking variable* and $\alpha_q^p$ is called the *pivot element*.
+For $t=\theta$, the blocking variable becomes $0$, so we can replace it with $x_q$ to obtain a new basis
+
+![[basispostate|700]]
+
+If $\mathcal I=\emptyset$, it means that the problem is unbounded and that we can increase $x_q$ as much as we want.
+If there is a degenerate basis, the ratio test can give 0, so there is a risk of changing the basis but remaining on the same vertex, which in turn risks creating a loop. These are called *degenerate simplex iterations*.

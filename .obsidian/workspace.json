@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "503128386bf848d2",
+        "id": "58c92fd3e7729d29",
         "type": "tabs",
         "children": [
           {
-            "id": "e14d1a8e932f03da",
+            "id": "8a4416e19e0d74ef",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Convex/Convex Optimization.md",
-                "mode": "preview",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Convex Optimization"
+              "title": "New tab"
             }
           }
         ]
@@ -142,13 +138,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Convex/Convex Optimization.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Convex Optimization"
+              "title": "Outline"
             }
           },
           {
@@ -183,26 +178,27 @@
       "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "e14d1a8e932f03da",
+  "active": "fd6ff7f9fe20aaa8",
   "lastOpenFiles": [
+    "img/image 9.png",
+    "img/image-1 2.png",
+    "ML/Machine Learning.md",
+    "Convex/Convex Optimization.md",
+    "Excalidraw/raw/basispostate.md",
+    "Excalidraw/png/basispostate.png",
     "Excalidraw/raw/PrimalSimplex.md",
     "Excalidraw/png/PrimalSimplex.png",
-    "Convex/Convex Optimization.md",
     "Excalidraw/raw/Basic simple sets.md",
     "Excalidraw/raw/spostamentobasi.md",
     "Excalidraw/png/spostamentobasi.png",
-    "ML/Machine Learning.md",
     "img/image 8.png",
     "img/image 7.png",
     "img/image 6.png",
     "Excalidraw/raw/polyhedron.md",
     "Excalidraw/png/polyhedron.png",
     "img/image 5.png",
-    "img/image 4.png",
     "Riassunto simboli.md",
     "ML/Machine Learning Nomenclature and Symbols.md",
-    "img/image 3.png",
-    "img/image 2.png",
     "Probability Review.md",
     "Excalidraw/raw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Excalidraw/raw/convex line endpoint.md",
@@ -223,7 +219,6 @@
     "Excalidraw/Drawing 2025-10-12 16.37.35.excalidraw.md",
     "ML/MACHINE LEARNING.pdf",
     "Excalidraw/convex hull ex.md",
-    "Excalidraw/pointwise maximum and suprimum.md",
     "ML",
     "Untitled.canvas",
     "Untitled 1.canvas",

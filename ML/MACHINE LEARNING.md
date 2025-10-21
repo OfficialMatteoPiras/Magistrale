@@ -18,7 +18,9 @@
 		- [[#Linear Models For Prediction#Simplest case|Simplest case]]
 		- [[#Linear Models For Prediction#General Case|General Case]]
 	- [[#Linear models & Classification Problem#Errors|Errors]]
-
+- [[#Linear Models (Regression)|Linear Models (Regression)]]
+	- [[#Linear Models (Regression)#Questions / Remark|Questions / Remark]]
+	- [[#Linear Models (Regression)#Answers|Answers]]
 #### Introduction
 Machine Learning $\rightarrow$ model to predict what comes next by using tokens (tokens $\equiv \mathbb{R}$ numbers / vectors created from a word)
 Train (using data) requires a lot deference and clusters of GPU for the comparational cost of training
@@ -394,7 +396,7 @@ $$
 \Rrightarrow \underbrace{\nabla{w}L_S(w)}_{\in\mathbb{R}^d} &= -\frac{2}{m}[\underbrace{\sum_{i=1}^{m}y_ix_i}_{\in\mathbb{R}^d}-(\underbrace{\sum_{i=1}^{m}x_ix_i^T}_{\in R^{d\times d}})\underbrace{w}_{\in\mathbb{R}^d}]
 \end{align}
 $$
-![[image 7.png|passages to the result above]]
+![[image 7.png|passages to the result above|737x690]]
 ![[image 8.png|359x221]]
 
 same computation with "vector-matrix" notation:
@@ -404,3 +406,49 @@ Y=\begin{bmatrix}y_1\\...\\y_m\end{bmatrix} \in \mathbb{R}^n
 X=\begin{bmatrix}x_1^T\\...\\x_m^T\end{bmatrix}\in \mathbb{R}^{m\times d}
 $$
 ##### Errors
+Define $e_i\triangleq y_i-x_i^Tw$ and $E\triangleq \begin{bmatrix}e_1\\...\\e_m\end{bmatrix} = \begin{bmatrix}y_1-x_1^Tw\\...\\y_m-x_m^Tw\end{bmatrix} = \begin{bmatrix}y_1\\...\\y_m\end{bmatrix} -\begin{bmatrix}x_1^T\\...\\x_m^T\end{bmatrix}w$ with $w \in \mathbb{R}^d$
+and doing so we have found the Y and X matrices written above. We can now rewrite the error equation as: 
+$$
+E\triangleq Y-Xw
+$$
+
+#### Linear Models (Regression)
+Let's define the new function:
+$$
+\begin{align}
+L_s(w) &= \frac{1}{m} \sum_{i=1}^{m}\underbrace{(y_i-x_i^Tw)^2}_{\equiv e_i^2} = \\
+\\ &= \frac{1}{m} [Y^TY-\underbrace{w^TX^TY-Y^TXw}_{\substack{same thing\\ (w^TXY^Y\equiv Y^TXw)}}+w^TXX^Tw] = \\
+&= \frac{1}{m}[Y^TY-2w^TX^TY+w^TX^TXw]
+\end{align}
+$$
+and it's gradient as:
+$$
+\begin{align}
+\nabla_wL_S(w) &= \begin{bmatrix}\frac{\partial L_S}{\partial w_1}\\...\\\frac{\partial L_S}{\partial w_d}\end{bmatrix} = \text{ <see passages below> } = \\
+&= \frac{-2X^TY+2XX^Tw}{m} = 2\frac{-X^TY+XX^Tw}{m} = \\
+&\Rrightarrow 0 = \frac{-2}{m} [-X^TY+XX^Tw] = \frac{-2}{m} [\sum_{i=1}^{m}y_ix_i-(\sum_{i=1}^{m}x_ix_i^T)w] 
+\end{align}
+$$
+which bring us to $\nabla_wL_S(w) = 0 \iff \underbrace{X^TY}_{b}=\underbrace{(X^TX)w}_{A}$
+For further details check the passages below:
+![[image 9.png|passages|684x654]]
+##### Questions / Remark
+Rewriting the equation above as $b=Aw$ we cab as ourself some questions:
+1. Has it always a solution?
+2. Here is one solution or more than 1?
+3. How we find the/all the solutions
+##### Answers
+1) $\exists w \text{ s.t. } Aw=b \iff b\in ImA = Rang(A) = col \space span(A)$
+	column spans the entire space
+	*remark 1:* $XX^T\in \mathbb{R}^{d\times d}$
+	*remark 2:* $\begin{cases}b=X^TY \\A = X^Tx\end{cases} \text{ where } b\in Im(X^T)=Im(X^TX)=Im(A)$ 
+	with this two considerations we can imply that exist at least one solution to $b=Ax$ (where $\nabla_wL_S(w)=0 \Rrightarrow b=Aw$)
+2) Has $Aw=b$ an unique solution?
+	say that $w^*$ is a solution, ie $b=Aw$ 
+	if $A=X^TX$ *is not* full rank
+	A not full rank means that $\exists \tilde{w}\neq 0 \text{ s.t. } A\tilde{w}=0$ (non space of a / $ker(A)$)
+	There is an entire space of $\tilde{w} \Rrightarrow \tilde{w}\in ker(A)$
+	If $\begin{align}&w^* \text{ s.t. } b=Aw^* \\&\tilde{w} \text{ s.t. } b=A\tilde{w} \end{align}$ $\Rrightarrow b=A(w^*+\tilde{w}) \quad \forall\tilde{w}\in ker(A)$
+	Then $w^*+\tilde{w}$ is a solution $\forall \tilde{w} \in ker(A)$ 
+3) how to find solution to $b=Aw$ when a is not full rank: 
+	(useful to find how sensitive my solutions are to perturbations )
