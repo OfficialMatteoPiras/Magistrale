@@ -109,5 +109,6 @@
 | Sistema di casi      | $\begin{cases}1 & x>0 \ 0 & \text{else}\end{cases}$ | `\begin{cases} ... \end{cases}`            |
 | Freccia con scritte  | $\xrightarrow[\text{under}]{\text{upper}}$          | `\xrightarrow[\text{under}]{\text{upper}}` |
 | Underset con scritta | $\underset{\text{text}}<$                           | `\underset{\text{under}}\text{symbol}`     |
+| Insieme vuoto        | $\emptyset$                                         | `emptyset`                                 |
 
 ---

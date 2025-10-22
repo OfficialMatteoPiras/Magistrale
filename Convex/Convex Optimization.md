@@ -15,6 +15,13 @@
 	- [[#Convexity#Separation Theorem|Separation Theorem]]
 	- [[#Convexity#Convex Functions|Convex Functions]]
 	- [[#Convexity#Calculus of convex functions|Calculus of convex functions]]
+	- [[#Convexity#Firts-order conditions|Firts-order conditions]]
+		- [[#Firts-order conditions#Definition|Definition]]
+		- [[#Firts-order conditions#Proof|Proof]]
+		- [[#Firts-order conditions#Corollary|Corollary]]
+	- [[#Convexity#Second-order conditions|Second-order conditions]]
+	- [[#Convexity#Global optimality theorem|Global optimality theorem]]
+		- [[#Global optimality theorem#Proof|Proof]]
 - [[#Convex Programming|Convex Programming]]
 	- [[#Convex Programming#Definition Vertex|Definition Vertex]]
 	- [[#Convex Programming#Theorem (Minkowski Weyl)|Theorem (Minkowski Weyl)]]
@@ -30,6 +37,9 @@
 	- [[#Primal Simplex#Finding a better basis|Finding a better basis]]
 	- [[#Primal Simplex#How much can it increase?|How much can it increase?]]
 		- [[#How much can it increase?#Ratio test|Ratio test]]
+	- [[#Primal Simplex#Algorithmic Description|Algorithmic Description]]
+	- [[#Primal Simplex#Initialization: Phase-I and Phase-II|Initialization: Phase-I and Phase-II]]
+		- [[#Initialization: Phase-I and Phase-II#Numerical Example|Numerical Example]]
 
 
 ### Introduction
@@ -408,6 +418,85 @@ As with convex sets, it is often more convenient to show a function to be convex
 	is a convex function.
 	![[pointwise maximum and suprimum.png|300]]
 4. *Partial minimization.* If f(x,y) is a convex function and C is a convex set, then $g(x)=\inf_{y\in C} f(x,y)$ is convex function.
+
+#### Firts-order conditions
+##### Definition
+A function f(x) is convex iff: 
+$$
+f(y) \geq f(x) + \nabla f(x)^T(y-x)
+$$
+for all $x,y \in domf$.
+![[image 10.png]]
+##### Proof
+We can divide the proof in two different cases:
+- $n=1$ (one dimensional case):  
+$$
+f(x) \text{ convex } f(y) \iff f(x)+f'(x)(y - x) \quad \forall x,y \in domf
+$$
+Take any two points $x,y \in domf$. Since $f$ is convex, $(1-\theta)x+\theta y \in domf$ and we have:
+$$
+\begin{align}
+&f(\underbrace{(1-\theta)x+\theta y}_{x+\theta(y-x)}) \leq (1-\theta)f(x)+\theta f(y) \\
+\rightarrow &\frac{f(x+\theta(y-x))-f(x)}{\theta} \leq f(y)-f(x) \\
+\rightarrow &f(y) \geq f(x) + \underbrace{\frac{f(x+\theta(y-x))-f(x)}{\theta}}_{f'(x)(y-x) \quad \text{ for } \theta \rightarrow 0}
+\end{align}
+$$
+Take again any two points $x,y \in domf$ and consider the convex combi nation $z = \theta x+(1-\theta)y$. Let us apply the condition on the right twice, once with points x and z and once for the points y and z: 
+$$
+\begin{align}
+f(x) & \geq f(z) + f'(z)(x-z)\\
+f(y) & \geq f(z) + f'(x)(y-z)
+\end{align}
+$$
+If we multiply them by $\theta$ and $(1-\theta)$ (respectively), and add up, we obtain:
+$$
+\theta f(x) + (1-\theta)f(y) \geq f(z) + f'(z)[\theta (x-z) + (1-\theta)(y-z)]
+$$
+and thus f is convex.
+- $n>1$ (n-dimensional case):
+Let $x,y \in domf$ and consider the restriction of f along the line passing through x and y, i.e., consider:
+$$
+\begin{align}
+g(t) &= f(ty + (1-t)x) \\
+g'(t) &= \nabla f(ty-(1-t)x)^T(y-x)
+\end{align}
+$$
+where the second is obtain by standard properties of multidimensional calculus.
+Since f is convex so is g and we can apply the result just proved for the 1-dimensional case to obtain: $g(1) \geq g(0) + g'(0)(1-0)$
+which becomes, after substitutions: $f(y) \geq f(x) + \nabla f(x)^T(y-x)$
+Consider the two convex combinations $ty+(1-t)x$ and $\tilde{t}y + (1-\tilde{t}x)$, and apply the condition:
+$$
+f(ty+(1-y)x) \geq f(\tilde{t}y+(1-\tilde{t})x) + \nabla f(\tilde{t}y+(1-\tilde{t})x)^T\underbrace{(ty+(1-t)x-\tilde{t}y-(1-\tilde{t})x)}_{(y-x)(t-\tilde{t})}
+$$
+This is nothing but:$g(t) \geq g(t) + g'(\tilde{t})(t-\tilde{t})$
+and again by the result proved in the 1-dimensional case we conclude that g is convex. Since the two points x and y were arbitrary, this is turn shows that f is convex as well.
+##### Corollary 
+If a function is convex and differentiable, then $\nabla f(x)=0$ is a sufficient condition for x being a global minimizer of the function f, as it implies that $f(x)\geq f(y)$for any $y \in domf$.
+
+#### Second-order conditions
+A function f(x) is convex iff $\nabla^2f(x)\succeq 0$ for all $x \in domf$.
+We remind that the matrix $\nabla^2f(x)$ is called the *Hessian* of f at point x.
+#### Global optimality theorem
+Let C be a convex set and $f(x)$ be a convex function. Consider the convex optimization problem:
+$$
+\begin{cases}
+min \space f(x) \quad \text{f(x) convex} \\
+x\in C \quad \text{C convex}
+\end{cases}
+$$
+$max \space f(x) \equiv -min \space f(x) -f(x)$ where the minus on $f(x)$ changes the direction of the curve and makes it a concave function.
+Every locally optimal solution is also a globally optimal solution.
+![[image-1 3.png]]
+##### Proof
+Let $\tilde{x}$ be a locally optimal solution. Having that $z=\lambda \tilde{x} + (1-\lambda)y$ we can conclude that:
+$$
+f(\tilde{x}) \underbrace{\leq}_{\substack{\text{local}\\\text{optimum}}} f(z) \underbrace{=}_{\text{definition}} f(\lambda \tilde{x} + (1-\lambda)y) \underbrace{\leq}_{\text{convex}} \lambda f(\tilde{x}) + (1-\lambda)f(y)
+$$
+which brings us to:
+$$
+\cancel{(1-\lambda)} f(\tilde{x}) \leq (1-\lambda) f(y)
+$$
+
 ---------
 ### Convex Programming
 
@@ -636,3 +725,52 @@ For $t=\theta$, the blocking variable becomes $0$, so we can replace it with $x_
 
 If $\mathcal I=\emptyset$, it means that the problem is unbounded and that we can increase $x_q$ as much as we want.
 If there is a degenerate basis, the ratio test can give 0, so there is a risk of changing the basis but remaining on the same vertex, which in turn risks creating a loop. These are called *degenerate simplex iterations*.
+
+#### Algorithmic Description 
+We can thus define the revised primal simplex algorithmically as follows:
+	*STEP 0)* [INIT] Given a feasible basis $B$, compute $B^{-1}$, $\beta = B^{-1}b$ and $z=c_B^Tx_B [= c_B^T\beta = c_B^TB^{-1}b]$
+	*STEP 1)* Compute the vector of multipliers $\pi^T = c_B^TB^{-1}$
+	*STEP 2)* [PRICING] 
+		 Compute the reduced costs: $d_j=c_j-\pi^TA_j \quad \forall j \in \mathcal{N}$   
+		 - if $d_j\geq 0 \quad \forall j \in \mathcal{N}$ then we stop
+		 - else $\underbrace{\text{pick } x_q}_{\substack{\text{entering variabile}\\1^{st}\text{degree of freedom}}}$ with $d_q<0$
+	*STEP 3)* Compute $\alpha_q=B^{-1}A_q$ 
+	*STEP 4)* [PIVOT/RADIO TEST] Define $\mathcal{I}=\{i:\alpha_q^i>0\}$ 
+		- if $\mathcal{I} = \emptyset$   the problem is unbounded
+		- else [RADIO TEST] $\theta = min_{i\in \mathcal{I}} \{\frac{\beta^i}{\alpha_q^i}\}$
+		computing $\theta$ and the leaving variable $x_{k_p}$ 
+	*STEP 5*) Update the basis $B$ and its $B^{-1}$, Then update the quantities $\beta$ and $z$ as: $\begin{cases}\beta_i=\beta_i-\theta\alpha_q^i \quad i\neq q \\ \beta_p=\theta \\ z = z + \theta d_q\end{cases}$
+	*FINAL STEP)* Go to Step 1
+#### Initialization: Phase-I and Phase-II
+But what if we don't have a starting basis?
+In this case, we can resort to the so-called ~={yellow}two-phase simplex method=~, where in phase I we solve an auxiliary problem whose purpose is to find a feasible basis, which will be the starting basis for phase II. Let us start with a linear program in standard form:
+$$
+\begin{cases}
+min\space e^T y \\
+Ax = b \quad \text{W.L.O.G } b\geq 0 \\
+x \geq 0
+\end{cases}
+$$
+Now, we can drop the original objective function, and add one artificial variable $y_i$ for every row in the matrix, and minimize the sum of those variables:
+$$
+\begin{cases}
+min\space e^T y = \sum_{i=1}^{m}y_i\\
+Ax + Iy = b \quad \rightarrow y=I^{-1}b = b \geq 0 \text{ [so I is a feasible basis] }\\
+x,y \geq 0
+\end{cases}
+$$
+So since I is a feasible basis we can apply it to the problem known as **phase I**. 
+Let us assume now that this preliminary problem has been solved to optimality, with optimal value $w^*$ and optimal solution $(x^*,y^*)$. 
+There are two possibilities:
+- $w^*>0$:
+	This implies that there is no feasible solution to the system with $y = 0$, and hence the original problem is infeasible.
+- $w^*=0$:
+	that divides in another two cases:
+	1. ~={yellow}all the variables y's are non basic=~: we have a feasible basis of the original system readily available, from which we can start phase II.
+	2.  ~={yellow}some of the variables y's are basic=~: then it can be shown that if the matrix has full row rank those artificial variables can be pivoted out of the basis, with some degenerate simplex iterations, until we are back to the case in which all artificial variables are non-basic.
+##### Numerical Example
+
+![page_9.png](%201/LP/page_9.png)
+![page_10.png](%201/LP/page_10.png)
+![page_11.png](%201/LP/page_11.png)
+

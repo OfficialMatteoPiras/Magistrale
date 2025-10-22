@@ -1,7 +1,6 @@
 [
   "fast-text-color",
   "better-export-pdf",
-  "better-mathjax",
   "obsidian-excalidraw-plugin",
   "obsidian-plugin-toc",
   "table-editor-obsidian",
@@ -10,5 +9,7 @@
   "obsidian-banners",
   "omnisearch",
   "text-extractor",
-  "obsidian-icon-folder"
+  "obsidian-icon-folder",
+  "better-mathjax",
+  "pdf2img"
 ]
