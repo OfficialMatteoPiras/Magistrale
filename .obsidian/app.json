@@ -3,5 +3,6 @@
   "alwaysUpdateLinks": true,
   "tabSize": 4,
   "vimMode": false,
-  "readableLineLength": false
+  "readableLineLength": false,
+  "strictLineBreaks": false
 }

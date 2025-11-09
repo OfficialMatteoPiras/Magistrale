@@ -452,3 +452,4 @@ Rewriting the equation above as $b=Aw$ we cab as ourself some questions:
 	Then $w^*+\tilde{w}$ is a solution $\forall \tilde{w} \in ker(A)$ 
 3) how to find solution to $b=Aw$ when a is not full rank: 
 	(useful to find how sensitive my solutions are to perturbations )
+	
