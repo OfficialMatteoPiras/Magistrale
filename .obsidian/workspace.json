@@ -31,7 +31,7 @@
               "type": "markdown",
               "state": {
                 "file": "ML/Homeworks.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "pinned": true,
@@ -42,19 +42,21 @@
           {
             "id": "951195e485e1a2a9",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Riassunto simboli.md",
+                "file": "System Theory/Theory From The Exercises.md",
                 "mode": "source",
                 "source": false
               },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "Riassunto simboli"
+              "title": "Theory From The Exercises"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -111,8 +113,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 280,
-    "collapsed": true
+    "width": 280
   },
   "right": {
     "id": "96e7914df53882f4",
@@ -219,12 +220,13 @@
       "pdf2img:Convert PDF to images": false
     }
   },
-  "active": "c94f9c74cc886ff1",
+  "active": "951195e485e1a2a9",
   "lastOpenFiles": [
     "Riassunto simboli.md",
-    "ML/Homeworks.md",
-    "Convex/Convex Optimization.md",
+    "ML/MACHINE LEARNING.md",
     "System Theory/Theory From The Exercises.md",
+    "Convex/Convex Optimization.md",
+    "ML/Homeworks.md",
     "img/image 11.png",
     "System Theory/pdf/Chapter3.pdf",
     "System Theory/Theory From the Exercises.md",
@@ -266,7 +268,6 @@
     "Excalidraw/raw/affine_line.md",
     "Excalidraw/raw/affine examples.md",
     "Excalidraw/raw/Projection.md",
-    "Excalidraw/raw/product.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]
