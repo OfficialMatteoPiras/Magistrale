@@ -54,9 +54,25 @@
               "icon": "lucide-file",
               "title": "Theory From The Exercises"
             }
+          },
+          {
+            "id": "296e58cbf8368903",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ML/ML.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "ML"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -113,7 +129,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 280
+    "width": 280,
+    "collapsed": true
   },
   "right": {
     "id": "96e7914df53882f4",
@@ -220,17 +237,18 @@
       "pdf2img:Convert PDF to images": false
     }
   },
-  "active": "951195e485e1a2a9",
+  "active": "296e58cbf8368903",
   "lastOpenFiles": [
+    "ML/Machine Learning.md",
+    "ML/ML.md",
+    "System Theory/Theory From The Exercises.md",
     "Riassunto simboli.md",
     "ML/MACHINE LEARNING.md",
-    "System Theory/Theory From The Exercises.md",
     "Convex/Convex Optimization.md",
     "ML/Homeworks.md",
     "img/image 11.png",
     "System Theory/pdf/Chapter3.pdf",
     "System Theory/Theory From the Exercises.md",
-    "ML/Machine Learning.md",
     "System Theory/pdf/Chapter3.pdf.crdownload",
     "System Theory/pdf",
     "System Theory/Nuova cartella",
@@ -267,7 +285,6 @@
     "Excalidraw/raw/convex comb example.md",
     "Excalidraw/raw/affine_line.md",
     "Excalidraw/raw/affine examples.md",
-    "Excalidraw/raw/Projection.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]
