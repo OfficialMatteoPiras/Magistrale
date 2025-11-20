@@ -140,7 +140,7 @@ L_D(h) & = \mathbb{E}_D [l(h,z)] = 1\times[\mathbb{P}[l(h,z)]=1]+ 0 \times[\math
 $$
 
 ##### Example:
-![[image-4.png|605x175]]
+![[image-4 1.png|605x175]]
 
 New rule:
 $$
@@ -161,7 +161,7 @@ L_D(\hat{h}_S) &= \mathbb{E}_D [l(\hat{h}_S,z)] = 1\times[\mathbb{P}[l(\hat{h}_S
 $$
 We cannot compute this cause the *uncertainty is maximised*.
 The alternative is to restrict the freedom of choosing B:
-![[image-5.png|288x223]]
+![[image-5 1.png|288x223]]
 
 ##### Realizability
 A model class H saturize the realizability assumption (under distribution D)

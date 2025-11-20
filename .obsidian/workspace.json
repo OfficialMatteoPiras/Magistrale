@@ -56,7 +56,7 @@
             }
           },
           {
-            "id": "296e58cbf8368903",
+            "id": "25dd277af1a1cf27",
             "type": "leaf",
             "pinned": true,
             "state": {
@@ -69,6 +69,16 @@
               "pinned": true,
               "icon": "lucide-file",
               "title": "ML"
+            }
+          },
+          {
+            "id": "8568c7ba8d16b1a3",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ],
@@ -129,8 +139,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 280,
-    "collapsed": true
+    "width": 280
   },
   "right": {
     "id": "96e7914df53882f4",
@@ -237,16 +246,25 @@
       "pdf2img:Convert PDF to images": false
     }
   },
-  "active": "296e58cbf8368903",
+  "active": "fd6ff7f9fe20aaa8",
   "lastOpenFiles": [
-    "ML/Machine Learning.md",
     "ML/ML.md",
+    "img/image-6 1.png",
+    "img/image-5 1.png",
+    "img/image-4 1.png",
+    "img/image-3 1.png",
+    "img/image-2 3.png",
+    "img/image-1 5.png",
+    "img/image 14.png",
+    "img/image-2 2.png",
+    "img/image-1 4.png",
+    "img/image 13.png",
     "System Theory/Theory From The Exercises.md",
+    "ML/Machine Learning.md",
     "Riassunto simboli.md",
     "ML/MACHINE LEARNING.md",
     "Convex/Convex Optimization.md",
     "ML/Homeworks.md",
-    "img/image 11.png",
     "System Theory/pdf/Chapter3.pdf",
     "System Theory/Theory From the Exercises.md",
     "System Theory/pdf/Chapter3.pdf.crdownload",
@@ -260,15 +278,6 @@
     "VarioSpeed",
     "Nuova cartella",
     "AdvancedBDofDT.md",
-    "img/image-1 3.png",
-    "img/image 10.png",
-    " 1/LP/page_11.png",
-    " 1/LP/page_10.png",
-    " 1/LP/page_9.png",
-    " 1/LP/page_8.png",
-    " 1/LP/page_7.png",
-    " 1/LP/page_6.png",
-    " 1/LP/page_5.png",
     " 1/LP",
     " 1",
     "symbols.md",
@@ -284,7 +293,6 @@
     "Excalidraw/raw/convex hull ex.md",
     "Excalidraw/raw/convex comb example.md",
     "Excalidraw/raw/affine_line.md",
-    "Excalidraw/raw/affine examples.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]
