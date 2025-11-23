@@ -40,55 +40,19 @@
             }
           },
           {
-            "id": "a45ff42a34cddcf4",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "System Theory/DT.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "DT"
-            }
-          },
-          {
             "id": "9b03fe12d5d5e4f0",
             "type": "leaf",
             "pinned": true,
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "System Theory/CT.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "pinned": true,
               "icon": "lucide-file",
-              "title": "CT"
-            }
-          },
-          {
-            "id": "775f492bfd052a16",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "System Theory/DT & CT.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "DT & CT"
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       },
       {
         "id": "550d44aa4b77b6ef",
@@ -98,14 +62,10 @@
             "id": "0355f7dbd97ba7a5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "System Theory/AllInOne.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "AllInOne"
+              "title": "New tab"
             }
           }
         ]
@@ -274,18 +234,27 @@
   },
   "active": "0355f7dbd97ba7a5",
   "lastOpenFiles": [
-    "System Theory/DT.md",
     "System Theory/AllInOne.md",
+    "ST/pdf/SYSTEM THEORY 1.pdf",
+    "ST/pdf/StateSpaceModels_ReviewMaterial2324.pdf",
+    "ST/pdf/StateSpaceModels_ReviewMaterial2324 (1).pdf",
+    "ST/pdf/Chapter7.pdf",
+    "ST/pdf/Chapter8.pdf",
+    "ST/pdf/Chapter10.pdf",
+    "ST/pdf/Chapter3.pdf",
+    "ST/pdf/Chapter6.pdf",
+    "ST/pdf/Chapter5.pdf",
+    "ST/Theory From The Exercises.md",
+    "ST/pdf",
+    "ST/DT & CT.md",
+    "ST/DT.md",
+    "ST/AllInOne.md",
+    "ST/CT.md",
+    "System Theory/DT.md",
     "System Theory/DT & CT.md",
     "img/image-1 7.png",
     "img/image 16.png",
     "System Theory/CT.md",
-    "System Theory/pdf/Chapter6.pdf",
-    "System Theory/pdf/Chapter7.pdf",
-    "System Theory/pdf/Chapter8.pdf",
-    "System Theory/pdf/Chapter10.pdf",
-    "System Theory/pdf/StateSpaceModels_ReviewMaterial2324 (1).pdf",
-    "System Theory/pdf/SYSTEM THEORY 1.pdf",
     "ML/ML.md",
     "System Theory/Theory From The Exercises.md",
     "ML/Homeworks.md",
@@ -302,11 +271,7 @@
     "Riassunto simboli.md",
     "ML/MACHINE LEARNING.md",
     "Convex/Convex Optimization.md",
-    "System Theory/pdf/Chapter3.pdf",
     "System Theory/Theory From the Exercises.md",
-    "System Theory/pdf/Chapter3.pdf.crdownload",
-    "System Theory/pdf",
-    "System Theory/Nuova cartella",
     "VarioSpeed/AdvancedBDofDT.md",
     "VarioSpeed/test.md",
     "VarioSpeed/TEST.md",
@@ -314,12 +279,6 @@
     "symbols.md",
     "Excalidraw/raw/basispostate.md",
     "Excalidraw/raw/PrimalSimplex.md",
-    "Excalidraw/raw/Basic simple sets.md",
-    "Excalidraw/raw/spostamentobasi.md",
-    "Excalidraw/raw/polyhedron.md",
-    "ML/Machine Learning Nomenclature and Symbols.md",
-    "Probability Review.md",
-    "Excalidraw/raw/Drawing 2025-10-12 16.37.36.excalidraw.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]
