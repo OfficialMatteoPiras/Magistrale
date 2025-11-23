@@ -24,38 +24,6 @@
             }
           },
           {
-            "id": "c94f9c74cc886ff1",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ML/Homeworks.md",
-                "mode": "preview",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Homeworks"
-            }
-          },
-          {
-            "id": "951195e485e1a2a9",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "System Theory/Theory From The Exercises.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Theory From The Exercises"
-            }
-          },
-          {
             "id": "25dd277af1a1cf27",
             "type": "leaf",
             "pinned": true,
@@ -72,17 +40,75 @@
             }
           },
           {
-            "id": "8568c7ba8d16b1a3",
+            "id": "a45ff42a34cddcf4",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "System Theory/DT.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "DT"
+            }
+          },
+          {
+            "id": "9b03fe12d5d5e4f0",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "System Theory/CT.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "CT"
+            }
+          },
+          {
+            "id": "775f492bfd052a16",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "System Theory/DT & CT.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "DT & CT"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
+      },
+      {
+        "id": "550d44aa4b77b6ef",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0355f7dbd97ba7a5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "System Theory/AllInOne.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AllInOne"
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -246,40 +272,45 @@
       "pdf2img:Convert PDF to images": false
     }
   },
-  "active": "fd6ff7f9fe20aaa8",
+  "active": "0355f7dbd97ba7a5",
   "lastOpenFiles": [
+    "System Theory/DT.md",
+    "System Theory/AllInOne.md",
+    "System Theory/DT & CT.md",
+    "img/image-1 7.png",
+    "img/image 16.png",
+    "System Theory/CT.md",
+    "System Theory/pdf/Chapter6.pdf",
+    "System Theory/pdf/Chapter7.pdf",
+    "System Theory/pdf/Chapter8.pdf",
+    "System Theory/pdf/Chapter10.pdf",
+    "System Theory/pdf/StateSpaceModels_ReviewMaterial2324 (1).pdf",
+    "System Theory/pdf/SYSTEM THEORY 1.pdf",
     "ML/ML.md",
+    "System Theory/Theory From The Exercises.md",
+    "ML/Homeworks.md",
+    "System Theory/Review Of Bachelors.md",
+    "img/image-1 6.png",
+    "img/image 15.png",
     "img/image-6 1.png",
     "img/image-5 1.png",
     "img/image-4 1.png",
     "img/image-3 1.png",
     "img/image-2 3.png",
     "img/image-1 5.png",
-    "img/image 14.png",
-    "img/image-2 2.png",
-    "img/image-1 4.png",
-    "img/image 13.png",
-    "System Theory/Theory From The Exercises.md",
     "ML/Machine Learning.md",
     "Riassunto simboli.md",
     "ML/MACHINE LEARNING.md",
     "Convex/Convex Optimization.md",
-    "ML/Homeworks.md",
     "System Theory/pdf/Chapter3.pdf",
     "System Theory/Theory From the Exercises.md",
     "System Theory/pdf/Chapter3.pdf.crdownload",
     "System Theory/pdf",
     "System Theory/Nuova cartella",
-    "System Theory",
     "VarioSpeed/AdvancedBDofDT.md",
     "VarioSpeed/test.md",
     "VarioSpeed/TEST.md",
-    "VarioSpeed/Nuovo Documento di testo.txt",
-    "VarioSpeed",
-    "Nuova cartella",
     "AdvancedBDofDT.md",
-    " 1/LP",
-    " 1",
     "symbols.md",
     "Excalidraw/raw/basispostate.md",
     "Excalidraw/raw/PrimalSimplex.md",
@@ -289,10 +320,6 @@
     "ML/Machine Learning Nomenclature and Symbols.md",
     "Probability Review.md",
     "Excalidraw/raw/Drawing 2025-10-12 16.37.36.excalidraw.md",
-    "Excalidraw/raw/convex line endpoint.md",
-    "Excalidraw/raw/convex hull ex.md",
-    "Excalidraw/raw/convex comb example.md",
-    "Excalidraw/raw/affine_line.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]

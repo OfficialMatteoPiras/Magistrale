@@ -992,7 +992,7 @@ This interval $I_x = [x - \Delta_\alpha; \ x + \Delta_\alpha]$ is the **Confiden
 **Setup**
 Assume $x \sim \mathcal{N}(m, \sigma^2)$ where $\sigma^2$ is considered unknown (in the general problem), but for this derivation, we use the properties of the Normal distribution.
 
-> [!info] Definition
+> [!danger] Definition
 > An interval $I_x$ is a confidence interval of level $(1-\alpha) \cdot 100\%$ for $m$ if:
 > $$
 > \mathbb{P}[I_x \ni m] = 1 - \alpha
