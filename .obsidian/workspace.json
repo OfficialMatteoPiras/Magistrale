@@ -8,22 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8a4416e19e0d74ef",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Convex/Convex Optimization.md",
-                "mode": "preview",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Convex Optimization"
-            }
-          },
-          {
             "id": "25dd277af1a1cf27",
             "type": "leaf",
             "pinned": true,
@@ -40,35 +24,19 @@
             }
           },
           {
-            "id": "9b03fe12d5d5e4f0",
+            "id": "4cb73717c1427e93",
             "type": "leaf",
-            "pinned": true,
             "state": {
-              "type": "empty",
-              "state": {},
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "image",
+              "state": {
+                "file": "img/image 17.png"
+              },
+              "icon": "lucide-image",
+              "title": "image 17"
             }
           }
         ],
-        "currentTab": 2
-      },
-      {
-        "id": "550d44aa4b77b6ef",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "0355f7dbd97ba7a5",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          }
-        ]
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -232,8 +200,25 @@
       "pdf2img:Convert PDF to images": false
     }
   },
-  "active": "0355f7dbd97ba7a5",
+  "active": "fd6ff7f9fe20aaa8",
   "lastOpenFiles": [
+    "ML/ML.md",
+    "ST/System Theory.md",
+    "ST/ST-BK.md",
+    "ST/System Theory - Copia.md",
+    "img/image-8.png",
+    "img/image-7.png",
+    "img/image-6 2.png",
+    "img/image-5 2.png",
+    "img/image-4 2.png",
+    "img/image-3 2.png",
+    "img/image-2 4.png",
+    "img/image-1 8.png",
+    "img/image 17.png",
+    "ST/ST1-IMG/SYSTEM THEORY 1-99.jpg",
+    "ST/ST1-IMG",
+    "ST/SYSTEM THEORY 1",
+    "ST/AllInOne.md",
     "System Theory/AllInOne.md",
     "ST/pdf/SYSTEM THEORY 1.pdf",
     "ST/pdf/StateSpaceModels_ReviewMaterial2324.pdf",
@@ -243,30 +228,16 @@
     "ST/pdf/Chapter10.pdf",
     "ST/pdf/Chapter3.pdf",
     "ST/pdf/Chapter6.pdf",
-    "ST/pdf/Chapter5.pdf",
     "ST/Theory From The Exercises.md",
-    "ST/pdf",
     "ST/DT & CT.md",
     "ST/DT.md",
-    "ST/AllInOne.md",
     "ST/CT.md",
     "System Theory/DT.md",
     "System Theory/DT & CT.md",
-    "img/image-1 7.png",
-    "img/image 16.png",
     "System Theory/CT.md",
-    "ML/ML.md",
     "System Theory/Theory From The Exercises.md",
     "ML/Homeworks.md",
     "System Theory/Review Of Bachelors.md",
-    "img/image-1 6.png",
-    "img/image 15.png",
-    "img/image-6 1.png",
-    "img/image-5 1.png",
-    "img/image-4 1.png",
-    "img/image-3 1.png",
-    "img/image-2 3.png",
-    "img/image-1 5.png",
     "ML/Machine Learning.md",
     "Riassunto simboli.md",
     "ML/MACHINE LEARNING.md",
@@ -277,8 +248,6 @@
     "VarioSpeed/TEST.md",
     "AdvancedBDofDT.md",
     "symbols.md",
-    "Excalidraw/raw/basispostate.md",
-    "Excalidraw/raw/PrimalSimplex.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]
