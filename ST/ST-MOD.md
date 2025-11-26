@@ -1,5 +1,4 @@
-# L1
-
+> [!danger] (This a modified version on ST)
 ## Classic Control Theory
 
 **Process:**
@@ -19,8 +18,6 @@ To improve its proprieties and achieve some targets: **Dynamic Output Feedback**
 
 > [!warning] Constraint
 > Only for Single In Single Out (**SISO**) Systems.
-
----
 
 ## Systems Theory
 
@@ -48,17 +45,15 @@ $K$ (Constant Block/Matrix) $\leftarrow x(t)$ (State)
 > [!success] Control Law
 > $$u(t) = K x(t) + v(t)$$
 
----
-
 ## Examples
 
 | Example 1: Quarter Car Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Example 2: Inverted Pendulum on a Cart                                                                                                                                                                                                                                                                                                                                                                                          |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **AKA Mass-Spring-Mass-Damper Model**<br><br>**Poor Model:**<br>Simple block $\Pi$ with Force $u(t)$ and output $y(t)$.<br><br>**An Improved Quarter Car Model:**<br>Diagram showing chassis and wheel suspension.<br>- **Car Control:** $u(t)$<br>- **Body of the car:** $M$, state $x_2(t) = y(t)$<br>- **Wheel:** $m$, state $x_1(t)$<br>- **Components:** Springs ($k, k_2$), Damper ($b$)<br>- **Disturbance:** $w(t)$ (Level of the road, high frequency noise)<br><br>**Conclusion:**<br>I need to use state space models for modeling and control. | **Diagram:**<br>Cart of mass $M$ with a rod of length $2L$.<br>- **Force:** $u(t)$<br>- **Position of cart:** $x_1(t)$<br>- **Angle:** $\theta(t) \approx x_2(t)$<br><br>**Target:**<br>Design the control law $u(t)$ to keep $\theta(t)$ around 0.<br><br>**Solution:**<br>It can be solved properly only using **State Space Models** targeting both $x_1(t)$ (Position of the cart) and $x_2(t)$ (Position of the pendulum). |
 
-# Review
+## Review
 
-## State-Space Models
+### State-Space Models
 
 **(Continuous-Time concept base)**
 
@@ -91,8 +86,6 @@ In case $D=0$ ($D$ is the feedforward matrix), $\Sigma$ is called **Strictly Pro
 
 ### Block Diagram of the Discrete Time (DT) State Space Model
 
-[Diagram: Input $u(t)$ goes into $G$ and $D$. The path from $G$ sums with feedback, goes through delay $z^{-1}$, outputs state $x(t)$, goes to $H$ and feeds back to $F$. The output of $H$ sums with output of $D$ to form $y(t)$.]
-
 **Matrices Definitions:**
 * $F \in \mathbb{R}^{n \times n}$: State Matrix
 * $G \in \mathbb{R}^{n \times m}$: Input Matrix
@@ -112,8 +105,6 @@ If we decide by $\lambda_1, \lambda_2 \dots \lambda_r \in \mathbb{C}$ the eigenv
 $$\Delta_F(z) = (z - \lambda_1)^{n_1} (z - \lambda_2)^{n_2} \dots (z - \lambda_r)^{n_r}$$
 Where $n_1, \dots, n_r$ are positive integers called the **Algebraic Multiplicities** of $\lambda_1, \dots, \lambda_r$.
 
----
-
 ## Expression of the State and Output at a generic $t \in \mathbb{Z}, t \ge t_0$
 
 > [!success] Formulas
@@ -123,28 +114,10 @@ Where $n_1, \dots, n_r$ are positive integers called the **Algebraic Multiplicit
 > **Output Evolution:**
 > $$y(t) = \underbrace{H F^{t-t_0} x(t_0)}_{\text{Unforced/Free Output Evolution } y_{\ell}(t)} + \underbrace{\sum_{k=t_0}^{t-1} H F^{t-1-k} G u(k) + D u(t)}_{\text{Forced Output Evolution on } Y_F(t)}$$
 
-## Lez 2
-### Review L1:
-
-$$
-\begin{cases}
-x(t+1) = Fx(t) + Gu(t) & t \in \mathbb{Z}_+ \\
-y(t) = Hx(t) + Du(t)
-\end{cases}
-$$
-$x(t) \in X \triangleq \mathbb{R}^n, u(t) \in U, y \in \mathbb{R}^p$.
-$x(0) = x_0 \in X$
-$u(t), t \in \mathbb{Z}_+$
-
-Resulting equations (assuming $t_0 = 0$):
-$$x(t) = F^t x(0) + \sum_{k=0}^{t-1} F^{t-1-k} G u(k) \triangleq x_{\ell}(t) + x_f(t)$$
-$$y(t) = H F^t x(0) + \sum_{k=0}^{t-1} H F^{t-1-k} G u(k) + D u(t) \triangleq y_{\ell}(t) + y_f(t)$$
-
 ### Impulse Response
 
 **Unitary Discrete Time Impulse:**
 $$\delta(t) \triangleq \begin{cases} 1 & t=0 \\ 0 & t \in \mathbb{Z}, t \neq 0 \end{cases}$$
-[Plot of impulse at 0]
 
 **Case $m=1$:** $x(0)=0, \quad u(t)=\delta(t)$
 
@@ -170,8 +143,6 @@ We define **Impulse Response** $W(t)$:
 $$W(t) \triangleq D \delta(t) + H F^{t-1} G \delta_{-1}(t-1)$$
 Where $\delta_{-1}(t)$ is the unit step:
 $$\delta_{-1}(t) \triangleq \begin{cases} 0 & t \in \mathbb{Z}, t < 0 \\ 1 & t \in \mathbb{Z}_+ \end{cases}$$
-
----
 
 **Case $m > 1$:**
 
@@ -220,8 +191,6 @@ $$J_{ik} = \begin{bmatrix} \lambda_i & 1 & & \huge\mathbb{O} \\ & \lambda_i & \d
 
 *Blocks... they are the multiplicity.*
 $$n_1 \ge n_{i2} \dots \ge n_{is_i}$$
-
----
 
 > [!example] Example 1
 > $$J = \begin{bmatrix} \begin{array}{cc|c} 2 & 1 & 0 \\ 0 & 2 & 0 \\ \hline 0 & 0 & 2 \end{array} & \huge\mathbb{O} \\ \huge\mathbb{O} & \begin{array}{|cc} 3 & 1 \\ 0 & 3 \end{array} \end{bmatrix}$$
@@ -279,8 +248,6 @@ $$
 | $\lambda_2 = 2$ | $n_2 = 5$ | $s_2 = 2$ |
 | $\lambda_3 = 0$ | $n_3 = 1$ | $s_3 = 1$ |
 
----
-
 > [!danger] Definition
 > Given a matrix $F \in \mathbb{R}^{n \times n}$, a polynomial $p(s) \in \mathbb{R}[s]$, $p(s) = p_d s^d + p_{d-1}s^{d-1} + \dots + p_1 s^1 + p_0$ is said to be an **Annihilating Polynomial** of $F$ if:
 > $$p(s) = p_d F^d + \dots + p_1 F + p_0 I = \mathbb{O}_{n \times n}$$
@@ -297,8 +264,6 @@ It is possible to prove that if $J$ is in Jordan Form:
 > $$\psi_J(s) = (s - \lambda_1)^{n_{11}} (s - \lambda_2)^{n_{21}} \dots (s - \lambda_r)^{n_{r1}}$$
 >
 > *Note: The exponents $n_{i1}$ correspond to the dimension of the largest miniblock associated with $\lambda_i$.*
-
----
 
 ### Example 3
 
@@ -318,7 +283,7 @@ $$
 > [!success] Result
 > $$\psi_J(s) = (s-2)^3 (s-1)^2 (s-0)^2$$
 
-# Example 4
+### Example 4
 
 $$
 J = \begin{bmatrix}
@@ -357,8 +322,6 @@ $$
 \end{bmatrix}
 $$
 
----
-
 ## Generic Power of a Matrix in Jordan Form
 
 Since $J$ is Block Diagonal:
@@ -369,13 +332,7 @@ $$J_r^t = \begin{bmatrix} J_{i1}^t & & \\ & J_{i2}^t & \\ & & J_{is_i}^t \end{bm
 
 $\Rightarrow$ I can easily deduce $J^t$ if I know the expression of $J_{ik}^t$ to the generic Jordan Miniblock $J_{ik}$.
 
----
-
-# L3
-
-**Recap L2 (Foto)**
-
-## What is the Power of a Jordan Miniblock?
+### Power of a Jordan Miniblock
 
 Assume to have a Jordan Miniblock of size $\nu$ corresponding to some $\lambda \in \mathbb{C}$:
 $$J_\lambda = \begin{bmatrix} \lambda & 1 & & \\ & \lambda & \ddots & \\ & & \ddots & 1 \\ & & & \lambda \end{bmatrix}$$
@@ -408,8 +365,6 @@ We can retrieve it (referring to $J_0^i$).
 > $$(a+b)^t = \sum_{i=0}^t \binom{t}{i} a^{t-i} b^i$$
 >
 > We can use only in this case to calculate $J_\lambda^t$ because if I consider: $(\lambda I_\nu)(J_0) = (J_0)(\lambda I_\nu)$ (Commutativity).
-
----
 
 $$
 J_\lambda^t = \lambda^t \begin{bmatrix} 1 & \\ & 1 \end{bmatrix} + \binom{t}{1} \lambda^{t-1} \begin{bmatrix} 0 & 1 \\ & 0 \end{bmatrix} + \binom{t}{2} \lambda^{t-2} \begin{bmatrix} 0 & 0 & 1 \\ & & 0 \end{bmatrix} + \dots + \binom{t}{\nu-1} \lambda^{t-\nu+1} \begin{bmatrix} 0 & 1 \\ & 0 \end{bmatrix}
@@ -499,12 +454,9 @@ By applying $\mathcal{Z}$ to the output equation and using the expression of $X(
 > [!success] Output Z-Transform
 > $$Y(z) = H(zI_n - F)^{-1} z x_0 + [H(zI_n - F)^{-1}G + D] U(z)$$
 
-# L4
+### Analysis of DT SSM via Z-Transform
 
-## Review of the analysis of DT SSM via Z-Transform
-
-> [!info] Review from Blackboard
-> **System $\Sigma$:**
+> [!info] System $\Sigma$
 > $$
 > \begin{cases}
 > x(t+1) = Fx(t) + Gu(t) & t \in \mathbb{Z}_+ \\
@@ -534,8 +486,6 @@ We deduce that:
 $$(zI_n - F)^{-1} z x_0 = X_{\ell}(z) = \mathcal{Z}[x_{\ell}(t)]$$
 $$H(zI_n - F)^{-1} z x_0 = Y_{\ell}(z) = \mathcal{Z}[y_{\ell}(t)]$$
 $$[H(zI_n - F)^{-1} G + D] U(z) = Y_f(z) = \mathcal{Z}[y_f(t)]$$
-
----
 
 We define **Transfer Matrix** of the State-Space Model $\Sigma(F, G, H, D)$:
 
@@ -605,8 +555,6 @@ $\Sigma$ is represented for short as $\Sigma(F, G, H, D)$. It is **Linear**, **T
 
 ### Block Diagram of CT $\Sigma$
 
-[Input $u(t)$ splits to $G$ and $D$. Path $G$ sums with Feedback $F$ to create $\dot{x}(t)$. This goes through Integrator $\int$ to become state $x(t)$. $x(t)$ goes to Output Matrix $H$ and Feedback Matrix $F$. Output of $H$ sums with Output of $D$ to form $y(t)$.]
-
 $$
 \Sigma : \begin{cases}
 \dot{x}(t) = Fx(t) + Gu(t) \\
@@ -618,8 +566,6 @@ $$
 If we know the Initial Cond. $x(0) = x_0 \in X$ and $u(t), t \in \mathbb{R}$, what is the expression of $x(t)$ and $y(t)$ for $t \in \mathbb{R}_+$?
 
 To answer we need to introduce the concept of **Exponential of a Matrix**.
-
----
 
 > [!danger] Definition
 > Given a matrix $F \in \mathbb{C}^{n \times n}$ we define the **Exponential of F** as:
@@ -639,8 +585,6 @@ It is possible to prove that the definition is always well posed, namely the ser
     Then $\forall t \in \mathbb{R}$:
     $$\underbrace{e^{Ft}}_{\text{Matrix}} v = \underbrace{e^{\lambda t}}_{\text{Scalar}} v$$
 
----
-
 By using the expression of Matrix $F$, we can answer our original question:
 
 > [!success] State and Output Evolution (CT)
@@ -652,8 +596,6 @@ By using the expression of Matrix $F$, we can answer our original question:
 > **Output:**
 > $$y(t) = \underbrace{H e^{Ft} x_0}_{\triangleq y_{\ell}(t)} + \underbrace{\left[ \int_0^t H e^{F(t-\tau)} G u(\tau) d\tau + D u(t) \right]}_{\triangleq y_f(t)}$$
 > * $y_f(t)$: Forced Output Component
-
----
 
 We define **Impulse Response** of the CT State-Space Model:
 
@@ -699,8 +641,6 @@ Then:
 > \end{bmatrix}$$
 >
 > The terms $e^{\lambda t}, t e^{\lambda t}, \dots, \frac{t^{\nu-1}}{(\nu-1)!}e^{\lambda t}$ are the $\nu$ **Elementary Modes** associated with a Miniblock $J_\lambda$.
-
----
 
 ### Conclusion:
 
@@ -788,11 +728,19 @@ $W(s)$ is strictly proper $\Leftrightarrow D=0$ (i.e. $\Sigma$ is strictly prope
 We have:
 $$\{\text{Poles of } W(s)\} = \bigcup_{ij} \{\text{Poles of } W_{ij}(s)\} \subseteq \sigma(F) \quad \left(\substack{\text{Set of the} \\ \text{Eigenvalues} \\ \text{of } F} \right)$$
 
----
-
 > [!info] In the Discrete-Time Case
 > $$X_{\ell}(z) = (zI_n - F)^{-1} z x_0$$
 > $$Y_{\ell}(z) = H(zI_n - F)^{-1} z x_0$$
+
+# System Analysis: DT vs CT
+
+| Discrete Time (DT)                                                                                                                                                                                                                                                                                                                                                             | Continuous Time (CT)                                                                                                                                                                                                                                                                                                                                                                                                  |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **State-Space Models**<br><br>**Definition: Discrete Time (DT) Model**<br>$$ \begin{cases} x(t+1) = Fx(t) + Gu(t) \\ y(t) = Hx(t) + Du(t) \end{cases} $$<br>Where $x(t) \in \mathbb{R}^n$, $u(t) \in \mathbb{R}^m$, $y(t) \in \mathbb{R}^p$.<br><br>**Block Diagram:** Uses a delay $z^{-1}$.<br><br>**Characteristic Polynomial:**<br>$\Delta_F(z) \triangleq \det(zI_n - F)$ | **State-Space Models**<br><br>**Definition: Continuous Time State-Space Model**<br>$$ \begin{cases} \dot{x}(t) = Fx(t) + Gu(t) \\ y(t) = Hx(t) + Du(t) \end{cases} $$<br>Where $x(t) \in \mathbb{R}^n$, $u(t) \in \mathbb{R}^m$, $y(t) \in \mathbb{R}^p$.<br><br>**Block Diagram:** Uses an integrator $\int$.                                                                                                        |
+| **Time Response Evolution**<br><br>**Lagrange Formula:**<br>$$x(t) = F^t x(0) + \sum_{k=0}^{t-1} F^{t-1-k} G u(k)$$<br>$$y(t) = HF^t x(0) + \sum_{k=0}^{t-1} HF^{t-1-k} G u(k) + Du(t)$$<br><br>**Impulse Response:**<br>$$W(t) \triangleq D\delta(t) + HF^{t-1}G \delta_{-1}(t-1)$$                                                                                           | **Matrix Exponential & Time Response**<br><br>**Matrix Exponential:**<br>$$e^{Ft} \triangleq \sum_{k=0}^{+\infty} \frac{F^k t^k}{k!}$$<br><br>**Lagrange Formula:**<br>$$x(t) = e^{Ft}x_0 + \int_{0}^{t} e^{F(t-\tau)} G u(\tau) d\tau$$<br>$$y(t) = H e^{Ft}x_0 + \int_{0}^{t} H e^{F(t-\tau)} G u(\tau) d\tau + D u(t)$$<br><br>**Impulse Response:**<br>$$W(t) \triangleq D\delta(t) + H e^{Ft} G \delta_{-1}(t)$$ |
+| **Analysis via Z-Transform**<br><br>**Z-Transform:** $V(z) = \sum_{t=0}^{+\infty} v(t) z^{-t}$<br><br>**Transfer Matrix:**<br>$$W(z) \triangleq H(zI_n - F)^{-1} G + D$$                                                                                                                                                                                                       | **Analysis via Laplace Transform**<br><br>**Laplace Transform:** $\mathcal{L}[\cdot]$ applied to $\dot{x} = Fx + Gu$.<br><br>**Transfer Matrix:**<br>$$W(s) \triangleq H(sI_n - F)^{-1}G + D$$<br>Poles of $W(s)$ are a subset of eigenvalues of $F$.                                                                                                                                                                 |
+
+---
 
 ## Non Linear Discrete Time State-Space Models
 
@@ -886,8 +834,6 @@ By referring to the linear DT autonomous system $x(t+1) = f(x(t)) \quad t \in \m
 $$\iff x_e = F x_e \iff (I_n - F)x_e = 0 \iff x_e \in \underbrace{\text{Ker}(I_n - F)}_{\text{Vector Subspace}} \iff x_e \text{ is eigenvector of } F \text{ corresponding to } \lambda=1$$
 *(Note: $F x_e = \lambda v$)*
 
----
-
 ## Case 1: $1 \in \sigma(F)$
 
 If it's the case then the $\text{Ker}(I_n - F)$ (which is a vector subspace) contains infinite number of elements.
@@ -902,8 +848,6 @@ In fact $\bar{x} \in \text{Ker}(I_n - F)$ then $\alpha \bar{x} \in \text{Ker}(I_
 
 > [!warning] Conclusion Case 1
 > If $\lambda=1 \in \sigma(F)$ all the equilibria cannot be attractive, they can be (at best) stable.
-
----
 
 ## Case 2: $1 \notin \sigma(F)$
 
@@ -937,8 +881,6 @@ $$
 * **Is bounded** if $|\lambda| < 1$ OR ($|\lambda| = 1$ and $k=0$).
 * **Diverges** in all of the other cases.
 
----
-
 > [!success] Attraction Condition
 > $x_e=0$ is an **Attractive Equilibrium Point** $\iff \forall \lambda \in \sigma(F) \quad |\lambda| < 1$
 >
@@ -960,12 +902,7 @@ In the linear case if $x_e=0$ is an attractive equilibrium point, then it is als
 > * $|\lambda| < 1$
 > * $|\lambda| = 1$ AND all Jordan Miniblocks associated with it have **size 1** ($n_{i1}=1$).
 
-# L6
-
-**Summary Photos**
-*(Summary of what we have seen regarding NL DT State Space Models)*
-
-## Autonomous NL DT State Space Models
+### Autonomous Non Linear Discrete Time State Space Models 
 
 $$
 \begin{cases}
@@ -983,8 +920,6 @@ When $x(0) = x_e \implies y(t) \equiv y_e = h(x_e) \quad \forall t \in \mathbb{Z
 $$
 x_e \begin{cases} \text{Stable} \\ \text{Attractive} \\ \text{Asymptotically Stable} \triangleq \substack{\text{Stable} \\ + \\ \text{Attractive}} \end{cases}
 $$
-
----
 
 ## Linear DT Autom. State Sp. Mod.
 
@@ -1009,7 +944,7 @@ $$
 > $\iff$ All elementary modes associated with $F$ are bounded but not necessarily convergent.
 > $\iff \forall \lambda \in \sigma(F)$ we have that $|\lambda| < 1$ OR $|\lambda| = 1$ and the multiplicity of $\lambda_i$ in $\psi_F(s)$ is unitary (Max size of $J_{\lambda_i}$ miniblock is one).
 
-# Example: Linearization and Stability Analysis
+### Example: Linearization and Stability Analysis
 
 **Consider the DT NL SSM:**
 
@@ -1025,8 +960,6 @@ $$
 **Tasks:**
 1. Determine for every $\bar{u} \in \mathbb{R}$ the Eq. Point $x_e \in \mathbb{R}^2$ corresponding to $u(t) = \bar{u}$.
 2. Determine the linearized model for each such Eq. Condition.
-
----
 
 **Step 1: Equilibrium Points**
 
@@ -1126,8 +1059,6 @@ $x_1 \bar{u}^2 + \bar{u} = 0$.
 * (2A) $\bar{u} = 0$: $x_e = (0,0) \land (x_1, 0) \ x_1 \in \mathbb{R}$
 * (2B) $\bar{u} \neq 0$: $x_e = (0,0) \land (-1/\bar{u}, -\bar{u})$
 
----
-
 **Step 2: Linearized Model**
 
 $$
@@ -1151,8 +1082,6 @@ x_2^2 & 2x_1 x_2
 $$
 *(Note: The entry $F_{11}$ in image looks like $x_2+1+\bar{u}$ or just $x_2+1$. Based on $f_1 = x_1 x_2 + x_2 + u$, $\partial_{x_1} = x_2$. The image is slightly ambiguous here, transcribing $x_2+1$ which fits $f_1 = x_1(x_2+1)$).*
 
----
-
 ### Case Analysis
 
 * **Case 1: $\bar{u}=0$**
@@ -1168,9 +1097,7 @@ $$
     * $x_e (-1/\bar{u}, -\bar{u})$
     $$F = \begin{bmatrix} 1 & -1/\bar{u} \\ \bar{u}^2 & 2 \end{bmatrix}$$
 
----
-
-> [!warning] Proposition
+> [!danger] Proposition
 > Consider a NL DT Autonomous SSM
 > $$x(t+1) = f(x(t)) \quad t \in \mathbb{Z}_+ \quad (A)$$
 > With $\dim x = n$ and assume:
@@ -1190,8 +1117,6 @@ $$
 >    *(Diagrams a, b, c showing eigenvalues relative to the unit circle)*
 >
 > c) If $\exists \lambda \in \sigma(F)$ with $|\lambda|=1$ and no eigenvalues with $|\lambda|>1$, then we cannot say anything about $x_e$ as an eq. point of (A).
-
----
 
 ## Example (Continued/Revisited)
 
@@ -1244,9 +1169,6 @@ $$
     $\text{Tr}(F) = f_{11} + f_{22} = 1 + 1 = 2$.
     $\text{Tr}(F) = \lambda_1 + \lambda_2 = 2$.
     $\lambda_1$ and $\lambda_2$ cannot be both modulus $< 1$.
-
-
-# L7
 
 ## Continuous Time NL Time Invariant SSM
 
@@ -1310,8 +1232,8 @@ $$
     $\iff$ All Elementary Modes associated with $e^{Ft}$ ($\equiv$ to $F$) converge to $0$ as $t \to +\infty$
     $\iff \frac{t^k}{k!} e^{\lambda_i t} \xrightarrow[\substack{\text{Goes} \\ \text{to } 0 \\ \text{IFF}}]{} 0 \forall i \ \text{Re}(\lambda_i) < 0 \iff \forall \lambda \in \sigma(F), \text{Re}(\lambda) < 0$
 
-| DT | CT |
-| :--- | :--- |
+| Discrete Time (DT)                                                                                   | Continuous Time (CT)                                                                                         |
+| :--------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | **Diagram:** Unit Circle on Complex Plane.<br>Eigenvalues inside the circle.<br>**"Attractiveness"** | **Diagram:** Complex Plane.<br>Eigenvalues on the left half plane ($\text{Re} < 0$).<br>**"Attractiveness"** |
 ![[image-1 8.png]]
 
@@ -1378,8 +1300,6 @@ $$
 > Where:
 > $$H \triangleq \frac{\partial h}{\partial x}\bigg|_{\substack{x=x_e \\ u=\bar{u}}} \quad \text{and} \quad D \triangleq \frac{\partial h}{\partial u}\bigg|_{\substack{x=x_e \\ u=\bar{u}}}$$
 
----
-
 > [!warning] Proposition: [Linearization Method]
 > Consider a NL CT Autonomous SSM
 >
@@ -1406,6 +1326,15 @@ $$
 
 ![[image-2 4.png]]
 
+# Stability & Linearization: DT vs CT
+
+| Discrete Time (DT)                                                                                                                                                                                                                                                                                                                                                                                                               | Continuous Time (CT)                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Stability & Equilibrium**<br><br>**Equilibrium:** $x_e = f(x_e)$ (Fixed point).<br>Linear case: $x(t+1)=Fx(t) \implies (I-F)x_e = 0$.<br><br>**Stability Criteria (Linear):**<br>1. **Asymptotically Stable:** $\forall \lambda \in \sigma(F), \| \lambda \| < 1$.<br>2. **Stable:** $\forall \lambda, \| \lambda \| \le 1$ AND simple blocks for $\| \lambda \|=1$.<br>3. **Unstable:** $\exists \lambda, \| \lambda \| > 1$. | **Stability & Equilibrium**<br><br>**Equilibrium:** $f(x_e) = 0$ (Null derivative).<br>Linear case: $\dot{x}=Fx \implies Fx_e = 0$.<br><br>**Stability Criteria (Linear):**<br>1. **Asymptotically Stable:** $\forall \lambda \in \sigma(F), \text{Re}(\lambda) < 0$.<br>2. **Stable:** $\forall \lambda, \text{Re}(\lambda) \le 0$ AND simple blocks for $\text{Re}(\lambda)=0$.<br>3. **Unstable:** $\exists \lambda, \text{Re}(\lambda) > 0$. |
+| **Non-Linear Linearization**<br><br>Jacobians evaluated at $(x_e, \bar{u})$.<br>Stability of $x_e$ determined by eigenvalues of $F = \frac{\partial f}{\partial x}$.<br>**Critical Case:** If eigenvalues on unit circle ($\lambda=1$), linearization is inconclusive.                                                                                                                                                           | **Non-Linear Linearization**<br><br>Jacobians evaluated at $(x_e, \bar{u})$.<br>Stability of $x_e$ determined by eigenvalues of $F = \frac{\partial f}{\partial x}$.<br>**Critical Case:** If eigenvalues on imaginary axis ($\text{Re}(\lambda)=0$), linearization is inconclusive.                                                                                                                                                             |
+
+---
+
 ## Reachability & Controllability Problems:
 
 ### Reachability:
@@ -1417,8 +1346,6 @@ Given some time $T>0$ and some state $x_0 \in X$, can I find an input signal $u(
 **Diagrams:**
 * **Reachability:** Graph showing state trajectory $x(t)$ going from origin $0$ to $x_f$ over time $T$.
 * **Controllability:** Graph showing state trajectory $x(t)$ going from $x_0$ to the axis (implicitly $0$) over time $T$.
-
----
 
 ## Reachability of DT SSM
 
@@ -1444,8 +1371,6 @@ $$
 x(k) = x_f(k) = \sum_{i=0}^{k-1} F^{k-1-i} G u(i) = \underbrace{[G | FG | \dots | F^{k-1} G]}_{\substack{\triangleq R_k \\ \text{Reachability Matrix} \\ \text{at time } k \text{(in } k \text{ steps)}}} \underbrace{\begin{bmatrix} u(k-1) \\ u(k-2) \\ \vdots \\ u(0) \end{bmatrix}}_{\substack{\text{From the} \\ \text{newer to} \\ \text{oldest}}}
 $$
 *(Note above matrix: Matrix Blocks)*
-
----
 
 Therefore:
 
@@ -1509,9 +1434,7 @@ Since each $X_k^R$ is a vector subspace of $X=\mathbb{R}^n$ and $X_k^R \subsetne
 > $$X_1^R \subseteq X_2^R \subseteq \dots \subseteq X_{\bar{k}}^R = X_{\bar{k}+1}^R = \dots$$
 
 
-# L8
-
-## Reachability of DT Linear Models
+### Reachability of DT Linear Models
 
 **System $\Sigma$:**
 $$
@@ -1545,8 +1468,6 @@ So there cannot be an infinite number of proper inclusion in the prev chain.
 
 If the chain stops for some $k$ it cannot grow anymore.
 
----
-
 > [!warning] Proposition
 > (1) If $X_k^R = X_{k+1}^R$ then $X_{k+1}^R = X_{k+2}^R$ ($\implies X_{k+i}^R = X_k^R \quad \forall i \ge 0$)
 >
@@ -1574,8 +1495,6 @@ $\implies x_f \in X_{k+1}^R$
 
 *[Diagram showing trajectories]*
 
----
-
 (2) **If $G=0$:**
 Then $X_k^R = \{0\} \quad \forall k \ge 1$ and hence the result is trivial.
 
@@ -1588,8 +1507,6 @@ $$
 $$
 X_1^R \subset X_2^R \subset \dots \subset \underbrace{X_k^R = X_{k+1}^R = \dots \subseteq X = \mathbb{R}^n}_{X_k^R \equiv X_n^R \text{ is here}}
 $$
-
----
 
 ## We Define
 
@@ -1626,8 +1543,6 @@ $\implies \bar{k} = n$.
 
 From now on when a pair $(F,G)$ is reachable we'll call $\bar{k}$ its **Reachability Index** and denote it by $r$.
 
----
-
 ### (3) Cayley-Hamilton's Theorem
 
 > [!danger] Theorem
@@ -1638,8 +1553,6 @@ From now on when a pair $(F,G)$ is reachable we'll call $\bar{k}$ its **Reachabi
 > $$\Delta_F(F) = F^n + a_{n-1}F^{n-1} + \dots + a_1 F + a_0 I_n = \mathbb{O}_{n \times n}$$
 >
 > $$\implies F^n = - \sum_{i=0}^{n-1} a_i F^i$$
-
----
 
 ### Remark:
 
@@ -1713,8 +1626,6 @@ $$
 > [!info] Note
 > If 2 vect subspaces $W_1$ and $W_2$ are included in a vect space $V$ then all Linear Comb. of the vectors of $W_1$ and $W_2$ are included in $V$.
 
----
-
 ## Review of Basis of vect space and algebraically equivalent systems
 
 Consider, **for instance**, a DT SSM:
@@ -1776,8 +1687,6 @@ $$
 $$
 $\implies S = T^{-1}$, "$T$" is **NOT** singular.
 
----
-
 If we denote by $\bar{x}(t)$ the vector of coords of the state at time $t$ w.r.t. the new basis $\bar{B}_x$, we want to know the relationship between $\bar{x}(t)$ and $x(t)$.
 
 **From:**
@@ -1791,8 +1700,6 @@ $$
 \boxed{T} \bigg[\bar{x}(t)\bigg] = \bigg[x(t)\bigg] \underset{\substack{\text{can also} \\ \text{be written}}}{\implies} \bar{x}(t) = \boxed{T^{-1}} x(t)
 $$
 *(The boxes are to visualize better)*
-
----
 
 ### As a Result:
 
@@ -1874,8 +1781,6 @@ $$
 > [!success] Consequence
 > $\text{rank}(R) = \text{rank}(\bar{R})$ AND HENCE $\Sigma$ IS REACHABLE IFF $\bar{\Sigma}$ IS REACHABLE.
 
----
-
 ## Remark
 
 Suppose that $m=1$ and $\Sigma$ (and $\bar{\Sigma}$) is reachable (i.e. **Single Input Reachable System**). Then:
@@ -1946,8 +1851,6 @@ Therefore in the above chain there is a finite \# of proper inclusions.
 
 $\implies \exists \bar{k} \in \mathbb{Z}, \ \bar{k} \ge 1 \text{ s.t. } X_k^C = X_{\bar{k}}^C \quad \forall k \ge \bar{k}$
 
----
-
 > [!warning] Proposition
 > (1) If $X_k^C = X_{k+1}^C$ then $X_{k+1}^C = X_{k+2}^C$
 >
@@ -1973,9 +1876,7 @@ Let $x_0 \in X_{k+2}^C$ which means that $\exists \mu(t) = \mu_t \quad t=0, 1, \
 
 *(This proof is concluded below)*
 
-# L10
-
-### Proposition
+### Controllability Proposition
 
 1.  If $X_k^C = X_{k+1}^C$ then $X_{k+1}^C = X_{k+2}^C$
     $(\implies X_{k+i}^C = X_k^C \quad \forall i \ge 0)$
@@ -2008,8 +1909,6 @@ Therefore:
 $\implies x_0 \in X_{k+1}^C$.
 
 2) Is identical to the one for $X_k^R$. $\square$
-
----
 
 ## Consequences
 
@@ -2048,8 +1947,6 @@ $\iff \text{Im } F^n \subseteq \text{Im } R$
 > (F,G) is Controllable $\Leftarrow \text{Im } F^n \subseteq \text{Im } R = \mathbb{R}^n$
 >
 > **In General Reachability implies Controllability.**
-
----
 
 ### (2) Assume that F is Non Singular
 
@@ -2120,8 +2017,6 @@ $$
 $$X_2^R = X_k^R = \langle e_2, e_3 \rangle \quad \forall k \ge 2$$
 $(F,G)$ is **NOT REACHABLE** (cause needs to coincide with $\mathbb{R}^n$, in this case the generated vectors are in $\mathbb{R}^2$ and $\mathbb{R}^3$).
 
----
-
 Since $F$ is singular, we can check if is controllable even though not reachable.
 
 #### Controllability Subspace
@@ -2164,9 +2059,9 @@ $$
 
 $(F,G)$ is **CONTROLLABLE TO ZERO**.
 
-# Review of Inner Prod. and Orthogonality
+## Review of Inner Prod. and Orthogonality
 
-## Definition
+### Definition
 
 > [!danger] Definition
 > Given vect. space $V$ over $\mathbb{R}$ an **Inner Prod.** is a function
@@ -2198,9 +2093,7 @@ c) If $V$ is a **Finite Dimensional** Vect Space then:
    $(U^\perp)^\perp = U$ and $U \oplus U^\perp = \{ u+w, \ u \in U, \ w \in U^\perp \} = V$
    *(Direct sum since $U \cap U^\perp = \{0\}$)*
 
----
-
-# Definition: Adjoint Transformation
+## Definition: Adjoint Transformation
 
 Let $V$ and $W$ be two vect spaces over $\mathbb{R}$. Assume that we've defined two Inner Prod., one in $V$, $<\cdot, \cdot>_V$ and one in $W$, $<\cdot, \cdot>_W$.
 Let $\mathcal{A}: V \to W$ be a Linear Transformation.
@@ -2247,8 +2140,6 @@ v^T [A^T w] &= v^T [\mathcal{A}^*(w)]
 $$
 $$\implies \mathcal{A}^*(w) = A^T w$$
 
----
-
 ## Main Prop of Adjoint Transformations
 
 
@@ -2263,8 +2154,6 @@ $$V \xrightarrow{\mathcal{A}} W \xrightarrow{\mathcal{A}^*} V$$
 
 > [!info] Note
 > If $\text{Im } \mathcal{A}$ is **Finite Dimensional** then they are two **Equalities** (referring to P3 and P4).
-
----
 
 ### Case 2) Function Spaces
 
@@ -2327,10 +2216,6 @@ $x \longmapsto \underbrace{G^T e^{F^T(t-\tau)}}_{\tau \in [0,t]} x \longmapsto \
 **Therefore $\forall t > 0$:**
 $$X_t^R = \text{Im } \mathcal{R}_t = \text{Im}(\mathcal{R}_t \mathcal{R}_t^*) = \text{Im}(W_t)$$
 
----
-
-# L11 (Mi sono dimenticato di registrare)
-
 ## Reachability of CT SSM
 
 $\Sigma: \dot{x}(t) = Fx(t) + Gu(t) \ t \in \mathbb{R}_+ \quad \dim x = n \ \dim u = m$
@@ -2367,8 +2252,6 @@ $$\mathcal{R}_t(\alpha_1 u_1(\cdot) + \alpha_2 u_2(\cdot)) = \alpha_1 \mathcal{R
 
 $\implies \mathcal{R}_t$ is a linear transformation.
 $\implies \text{Im } \mathcal{R}_t$ is a vector subspace of $X = \mathbb{R}^n$ and it's a finite-dimension vector space.
-
----
 
 > [!warning] Proposition
 > For every $t>0 \quad X_t^R = \text{Im } \mathcal{R}_t = \text{Im}(\mathcal{R}_t \mathcal{R}_t^*) = \text{Im}(W_t) = \text{Im } R$
@@ -2410,8 +2293,6 @@ $\equiv R^T$
 
 $\iff x \in \text{Ker } R^T \quad \square$
 
----
-
 > [!success] Consequence
 > If we denote by $X^R$ the set of states that can be reached (by the CT system) in finite time, then:
 > $$X^R = X_t^R = \text{Im } R \quad \forall t>0$$
@@ -2439,8 +2320,6 @@ If we introduce the set $X_t^C$ of the state in $X$ that are controllable to $0$
 > [!success] Controllability Set Definition
 > $$X_t^C = \{ x \in X : e^{Ft} x \in \text{Im } \mathcal{R}_t = X^R = \text{Im } R \}$$
 
----
-
 ### Proof
 
 We want to prove that $\forall t > 0: \ X_t^C = X^C = \text{Im } R$.
@@ -2448,14 +2327,14 @@ We want to prove that $\forall t > 0: \ X_t^C = X^C = \text{Im } R$.
 (1) $x \in X_t^C \iff e^{Ft} x \in X^R$
     $\iff x \in e^{-Ft} X^R$
 
-    **Therefore:** $X_t^C = e^{-Ft} X^R$
+**Therefore:** $X_t^C = e^{-Ft} X^R$
 
 (2) $X^R$ is $F$-invariant $\implies F X^R \subseteq X^R$
     $F^2 X^R \subseteq X^R$
     $\vdots$
     $F^k X^R \subseteq X^R$
 
-    $\implies \underbrace{\left[ \sum_{k=0}^\infty F^k \frac{(-t)^k}{k!} \right]}_{\equiv e^{-Ft} X^R} X^R \subseteq X^R$
+$\implies \underbrace{\left[ \sum_{k=0}^\infty F^k \frac{(-t)^k}{k!} \right]}_{\equiv e^{-Ft} X^R} X^R \subseteq X^R$
 
 So I proved that $e^{-Ft} X^R \subseteq X^R$ ($\subseteq$).
 Suppose that $\dim X^R = r$.
@@ -2465,8 +2344,6 @@ Since $e^{-Ft} X^R$ is included in $X^R$ and have same dimension they coincide.
 > [!success] Result (3)
 > $$X_t^C = e^{-Ft} X^R = X^R$$
 > *The exp. keeps track of the time so we can "Go Back" in time (Only in Time CT)*
-
----
 
 ## Point to Point Control of a DT SSM
 
@@ -2500,47 +2377,6 @@ $\text{Im } R_k = \text{Im}(R_k R_k^T)$
 
 $\implies \begin{bmatrix} u(k-1) \\ \vdots \\ u(0) \end{bmatrix} = R_k^T v_k$
 
-
-## Point to Point Control of a DT SSM
-
-**Assume:**
-$\Sigma : x(t+1) = Fx(t) + Gu(t) \quad t \in \mathbb{Z}_+, \ \dim x = n, \ \dim u = m$
-
-### Problem:
-Given some time $k \in \mathbb{Z}, \ k > 0$ and two states $x_0, x_f \in X$, determine, if possible an input sequence, $u(0), u(1), \dots, u(k-1) \in U$ that leads the state from $x(0) = x_0$ to $x(k) = x_f$.
-
-**Since:**
-$$
-x(k) = x_{\ell}(k) + x_f(k) = F^k x(0) + R_k \begin{bmatrix} \mu(k-1) \\ \vdots \\ \mu(0) \end{bmatrix}
-$$
-
-**The problem is solvable IFF:**
-(1) $\exists \mu(0), \dots, \mu(k-1) \in U$ ST $x_f = F^k x_0 + R_k \begin{bmatrix} \mu(k-1) \\ \vdots \\ \mu(0) \end{bmatrix}$
-
-$\iff x_f - F^k x_0 = R_k \underbrace{\begin{bmatrix} \mu(k-1) \\ \vdots \\ \mu(0) \end{bmatrix}}_{\mathcal{U}_k} \quad \exists \mu(0) \dots \mu(k-1) \in U$
-
-> [!success] Solvability Condition
-> $$\iff x_f - F^k x_0 \in \text{Im } R_k$$
-
-If we know that the solvability condition is satisfied then, (1) has a solution.
-We remark that (remember adjoint transf. and the fact that we are working with finite dim. vect. spaces) the:
-$$
-\begin{aligned}
-\text{Im } R_k &= \text{Im}(R_k R_k^T) \\
-(\text{Im } \mathcal{A} &= \text{Im}(\mathcal{A}\mathcal{A}^*))
-\end{aligned}
-$$
-
-**Therefore, we will solve:**
-(2)
-> [!warning] Equation to Solve
-> $$x_f - F^k x_0 = R_k R_k^T v_k$$
-> *Where $v_k$ is Unknown*
-
-$$\implies \begin{bmatrix} \mu(k-1) \\ \vdots \\ \mu(0) \end{bmatrix} = R_k^T v_k$$
-
----
-
 * **Case 2:**
 If $\text{rank } R_k < n$
 Then $R_k R_k^T$ is singular and hence that exists an infinite \# of solutions of (2).
@@ -2562,10 +2398,7 @@ $$R_k^T v_k = R_k^T [\bar{v}_k + a_k] = R_k^T \bar{v}_k + \cancel{R_k^T a_k}$$
 
 So, independently of whatever we are in Case 1 or 2, the solution we obtain by first determining a solution $v_k$ of (2) and then setting $\mathcal{U}_k = R_k^T v_k$ is always **UNIQUE** and it will be denoted by $\mathcal{U}_k^*$.
 
----
-
-# L12
-*(Review Last Class)*
+### Point to Point Control - Case Analysis
 
 If the problem is solvable then the eq. we should solve is:
 (1) $$x_f - F^k x_0 = \underbrace{R_k \begin{bmatrix} \mu(k-1) \\ \vdots \\ \mu(0) \end{bmatrix}}_{\triangleq \mathcal{U}_k} \iff \text{Im } \underbrace{R_k}_{\mathcal{A}_k} = \text{Im}[\underbrace{R_k R_k^T}_{\mathcal{A} \mathcal{A}^*}]$$
@@ -2579,11 +2412,9 @@ So we solve (2) and from (one of) its solution(s) $v_k$, we can deduce a solutio
 
     Then $R_k R_k^T$ has rank $n$, in turn, which means that it is non singular and therefore:
 
-    > [!success] Unique Solution Formula
-    > $$\implies v_k = [R_k R_k^T]^{-1} [x_f - F^k x_0]$$
-    > *In this case unique solution*
-
----
+> [!success] Unique Solution Formula
+> $$\implies v_k = [R_k R_k^T]^{-1} [x_f - F^k x_0]$$
+> *In this case unique solution*
 
 ### Why is $\mathcal{U}_k^*$ so special?
 
@@ -2630,8 +2461,6 @@ $$
 It's all $\mathbb{R}^3$ since we have 3 indep. cols.
 
 Since $\text{rank } R_4 = 3$ the problem it's solvable, moreover, we are in **Case (1)**.
-
----
 
 **We have to solve:** $F^4 x_0$
 
@@ -2710,8 +2539,6 @@ We can claim that Eq. (1) is solvable IFF the following Eq. is solvable:
 
 If $v_t$ solves (2) then $\mathcal{R}_t^* v_k = \mu^*(\cdot)$ solves (1).
 
----
-
 * **Case 1:**
 $\text{Im } \mathcal{R}_t = \text{Im } W_t = \text{Im } R = \mathbb{R}^n$.
 
@@ -2747,7 +2574,13 @@ $$
 
 $\implies \|\mu(\cdot)\| \ge \|\mu^*(\cdot)\|$.
 
----
+# Reachability & Controllability: DT vs CT
+
+| Discrete Time (DT)                                                                                                                                                                                                                        | Continuous Time (CT)                                                                                                                                                                                                                                                                                                                             |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Reachability**<br><br>**Definition:** Reachable if $\exists u$ driving $x(0)=0$ to $x(k)=x_f$.<br><br>**Condition:**<br>$\text{rank } R_k = n$ (for $k \ge n$).<br>$R_k = [G                                                            | $[FG \| \dots \|F^{k-1}G]$<br><br>**Gramian:**<br>$W_k = R_k R_k^T$.<br>**Reachability**<br><br>**Definition:** Reachable if $\exists u$ driving $x(0)=0$ to $x(t)=x_f$.<br><br>**Condition:**<br>$\text{rank } R = n$.<br>$R = [G\|FG\| \dots \| F^{n-1}G]$.<br><br>**Gramian:**<br>$W_t = \int_0^t e^{F(t-\tau)} G G^T e^{F^T(t-\tau)} d\tau$. |
+| **Point-to-Point Control**<br><br>**Problem:** $x_0 \to x_f$ in time $k$.<br>**Solvability:** $x_f - F^k x_0 \in \text{Im } R_k$.<br>**Min Norm Solution:**<br>$\mathcal{U}_k^* = R_k^T (R_k R_k^T)^{-1} (x_f - F^k x_0)$ (if reachable). | **Point-to-Point Control**<br><br>**Problem:** $x_0 \to x_f$ in time $t$.<br>**Solvability:** $x_f - e^{Ft} x_0 \in \text{Im } R$.<br>**Min Norm Solution:**<br>$\mu^*(\cdot) = \mathcal{R}_t^* W_t^{-1} (x_f - e^{Ft} x_0)$ (if reachable).                                                                                                     |
+| **Controllability to Zero**<br><br>**Set:** $X_k^C = \{ x : F^k x \in \text{Im } R_k \}$.<br>If $F$ is singular, $X_k^C$ can be larger than $X^R$.                                                                                        | **Controllability to Zero**<br><br>**Set:** $X_t^C = e^{-Ft} X^R = X^R$.<br>In CT, the set of states controllable to zero coincides with the reachable subspace.                                                                                                                                                                                 |
 
 ### A look into the future:
 
@@ -2758,8 +2591,6 @@ $\implies \|\mu(\cdot)\| \ge \|\mu^*(\cdot)\|$.
 * Based on the fact that
     $$X^R = \text{Im}[G | FG | \dots | F^{n-1}G] = \text{Im } R$$
     is the (smallest) $F$-invariant subspace $X=\mathbb{R}^n$ including $\text{Im } G$.
-
----
 
 ### Exe 2:
 
@@ -2802,9 +2633,7 @@ $\begin{bmatrix} 0 \\ 0 \\ -1 \end{bmatrix} = \begin{bmatrix} 0 & 0 & 0 & 0 \\ 0
 
 **For instance:** $\mu(0) = -1, \quad \mu(1)=\mu(2)=\mu(3)=0$.
 
-# L13
-
-## Standard Reachability Form
+### Standard Reachability Form
 
 A form to which we can reduce every non reachable either CT or DT SSM by change of basis in $X$.
 The main result this form relies upon the fact that $X^R = \text{Im } R$ (Reachable Subspace) is $F$-invariant and includes the $\text{Im } G$.
@@ -2854,8 +2683,6 @@ $$
 $$
 *($Fv_i = [v_1 | \dots | v_\rho] [\dots]$)*
 
----
-
 On the other hand from $\bar{G} = T^{-1}G$ we get:
 $$G = T\bar{G} \implies [g_1 | \dots | g_m] = [v_1 | \dots | v_\rho | w_{\rho+1} | \dots | w_n] \bar{G}$$
 
@@ -2895,8 +2722,6 @@ $\Updownarrow$
 By using Cayley-Hamilton we can claim that $\text{rank}[G_1 | F_{11}G_1 | \dots | F_{11}^{\rho-1}G_1] = \rho$.
 **Thus $(G_1, F_{11})$ is Reachable.**
 
----
-
 ### Definition
 
 > [!danger] Definition
@@ -2934,8 +2759,6 @@ We want to explicitly write the system eq:
 * **$\Sigma_{NR} = (F_{22}, \mathbb{O}, H_2, \mathbb{O})$:** Non Reachable Subsystem.
     * Autonomous (Without Input).
     * $x_2(t+1) = F_{22} x_2(t)$.
-
----
 
 ### The system above translate into:
 
@@ -2975,9 +2798,7 @@ Thus every time we have a non-reachable subsystem the TF of the system will have
 $\implies$ There is a part of the system that contributes to the output but is not affected by the input.
 $\implies$ Lack of Reach. brings a Non-Reach. Subsystem and thus a lower degree Transf. Matrix.
 
-# L14
-
-## Theorem [PBH Review Test]
+### Theorem [PBH Reachability Test]
 
 **Popov-Belevich-Hautus (PBH) Reachability Test**
 
@@ -3009,8 +2830,6 @@ $$
 $$
 \implies \forall z \in \mathbb{C} \quad \text{rank}[zI_n - \bar{F} | \bar{G}] = \text{rank}[zI_n - F | G]
 $$
-
----
 
 ### Proof
 
@@ -3059,8 +2878,6 @@ $$
 If $z = \lambda \in \sigma(F_{22})$ then the rows of $\lambda I - F_{22}$ are Lin. Dependent, but then also the rows of $[ \mathbb{O} | \lambda I - F_{22} | \mathbb{O} ]$ are Lin. Dep $\implies \text{rank}[\dots] < n$.
 This also proves $(2) \Leftarrow$.
 
----
-
 **(2) $\Rightarrow$ Assume that $(F,G)$ not Reach.** (and hence it's algebric. equivalent to a pair $(\bar{F}, \bar{G})$ in Std. Reach. Form (A)) and $\text{rank}[\lambda I_n - F | G] = \text{rank}[\lambda I - \bar{F} | \bar{G}] < n$ for some $\lambda \in \mathbb{C}$.
 We want to prove that $\lambda \in \sigma(F_{22})$.
 
@@ -3095,8 +2912,6 @@ $\implies \lambda I - F_{22}$ is singular $\implies \lambda \in \sigma(F_{22})$.
 
 > [!info] Remark
 > The value of this criteria is in Part 2. It allows to identify $\sigma(F_{22})$ without calculating the Std Reach. Form.
-
----
 
 ### Ex:
 
@@ -3139,18 +2954,19 @@ $$[zI - F | G] \in \mathbb{R}[z]^{n \times (n+m)}$$
 **Assume** $\bar{F} = J$:
 $$
 \begin{bmatrix}
-2 & 1 & & \vline & & & & \vline & \\
-& 2 & 1 & \vline & & & & \vline & \\
-& & 2 & \vline & & & & \vline & \\
+2 & 1 & & | & & & & & & \\
+& 2 & 1 & | & & & & & & \\
+& & 2 & | & & & & & & \\
 \hline
-& & & \vline & 2 & & & \vline & \\
-& & & \vline & & 2 & & \vline & \\
+& & & | & 2 & | & & & & & \\
 \hline
-& & & \vline & & & 1 & 1 & \vline & \\
-& & & \vline & & & & 1 & \vline & \\
+& & & & & | & 2 & | & & & \\
 \hline
-& & & \vline & & & & & \vline & 1 & 1 \\
-& & & \vline & & & & & \vline & & 1
+& & & & & & & | & 1 & 1 & | & \\
+& & & & & & & | & & 1 & | & \\
+\hline
+& & & & & && & & & | & 1 & 1 \\
+& & & & & & & & & & | & & 1
 \end{bmatrix}
 $$
 
@@ -3166,21 +2982,19 @@ We check the rank of the PBH Reachab. Matrix only corresp. to $z = \lambda_1 = 2
 
 **Observe that** $\forall \lambda \quad \text{rank}[\lambda I - F | G] \equiv \text{rank}[F - \lambda I | G]$
 
----
-
 **Assume now: $z = \lambda_1 = 2$**
 
 $$
 [F - 2I | G] = \left[ \begin{array}{ccc|cc|c||c}
-0 & 1 & 0 & & & & & & g_1 \\
-0 & 0 & 1 & & & & & & g_2 \\
-\mathbf{0} & \mathbf{0} & \mathbf{0} & & & & & & \mathbf{g_3} \\
+0 & 1 & 0 & & & & & & &g_1 \\
+0 & 0 & 1 & & & & & & &g_2 \\
+\mathbf{0} & \mathbf{0} & \mathbf{0} & & & & & & &\mathbf{g_3} \\
 \hline
-& & & \mathbf{0} & & & & & \mathbf{g_4} \\
-& & & & \mathbf{0} & & & & \mathbf{g_5} \\
+& & & \mathbf{0} & & & & & &\mathbf{g_4} \\
+& & & & \mathbf{0} & & & & &\mathbf{g_5} \\
 \hline
-& & & & & -1 & 1 & & g_6 \\
-& & & & & & -1 & & g_7 \\
+& & & & & -1 & 1 & & &g_6 \\
+& & & & & & -1 & && g_7 \\
 \hline
 & & & & & & & -1 & 1 & g_8 \\
 & & & & & & & & -1 & g_9
@@ -3198,8 +3012,6 @@ $$
 * $\implies g_3, g_4, g_5$ are Lin. Indep. Row Vectors.
     * We can use them to make the rows Lin. Indep.
 
----
-
 **Assume $z = \lambda_2 = 1$**
 
 $$
@@ -3208,8 +3020,8 @@ $$
 \hline
 & \dots & & & \dots \\
 \hline
-& & \mathbf{0} & 1 & \mathbf{g_7} \\
-& & \mathbf{0} & \mathbf{0} & \mathbf{g_8} \\
+& & \mathbf{0} & 1 && \mathbf{g_7} \\
+& & \mathbf{0} & \mathbf{0}& & \mathbf{g_8} \\
 \hline
 & & & \mathbf{0} & 1 & \mathbf{g_8} \leftarrow \text{We need them} \\
 & & & & \mathbf{0} & \mathbf{g_9} \leftarrow \text{to be lin. indep.}
@@ -3217,8 +3029,6 @@ $$
 $$
 
 This matrix has rank $n=9$ IFF $g_7$ and $g_9$ are Lin. Indep.
-
----
 
 ### Corollary
 
@@ -3241,11 +3051,7 @@ $$
 > $(F,G)$ is Reachable $\iff \forall i \in \{1, 2, \dots, r\}$
 > The family of the **LAST ROWS** of the block $G_{i1}, \dots, G_{is_i}$ are Linear. Indep.
 
----
-
-# L15
-
-## Recap Reachability of a pair (F,G) with F=J in Jordan Form
+### Recap Reachability of a pair (F,G) with F=J in Jordan Form
 
 **Hypothesis:**
 $$
@@ -3278,8 +3084,6 @@ $\forall i$ the Geometric Multip. of $\lambda_i = 1$.
 
 Equiv. $\forall i$ there is a **Single Jordan Miniblock** associated with eigenvalue $\lambda_i$.
 
----
-
 ### Definition
 
 > [!danger] Definition: Cyclic Matrix
@@ -3294,22 +3098,22 @@ Given $F \in \mathbb{R}^{n \times n}$, the following are equivalent:
 4.  Every eigenvalue of $F$ has unitary geometric multiplicity.
 5.  $\Psi_F(z) \equiv \Delta_F(z)$ (Minimal Poly = Characteristic Poly).
 
-# Exe 1
+### Exe 1
 
 $$
 F = J = \begin{bmatrix}
-2 & 1 & & \vline & & & \vline & & \\
-& 2 & & \vline & & & \vline & & \\
+2 & 1 & | & & & & & & \\
+& 2 & | & & & & & & \\
 \hline
-& & 3 & 1 & & \vline & & \\
-& & & 3 & 1 & \vline & & \\
-& & & & 3 & \vline & & \\
+& &|& 3 & 1 && |& & & & & \\
+& &|& & 3 & 1& |& & &  & & \\
+& &|& & & 3 &|& & & & & \\
 \hline
-& & & & & 2 & 1 & \vline & \\
-& & & & & & 2 & \vline & \\
+& & & & & & |&2 & 1 & | & \\
+& & & & & & |&& 2 & | & \\
 \hline
-& & & & & & & \vline & 3 & 1 \\
-& & & & & & & \vline & & 3
+& & & & & & & & & | & & 3 & 1 \\
+& & & & & & & & & | & & & 3
 \end{bmatrix}
 $$
 
@@ -3343,9 +3147,7 @@ Since $m = \max_i s_i \implies m=3$.
 
 $\implies m \ge \max\{2, 3\} = 3$.
 
----
-
-# Exe 2
+### Exe 2
 
 $$
 F = J = \begin{bmatrix}
@@ -3367,8 +3169,6 @@ For every $\lambda \in \mathbb{R}$, determine $G$ with minimum \# of cols ST $(F
 1) $\lambda = 2$
 2) $\lambda = 3$
 3) $\lambda \neq 2, 3$
-
----
 
 ### Case 1: $\lambda = 2$
 
@@ -3468,8 +3268,6 @@ For $\lambda$: $s_2=1$ (1 block of size 2).
 For 3: $s_3=1$ (1 block of size 2).
 Max $m=2$.
 Matches Case 3 solution!
-
----
 
 **Solutions:**
 
@@ -3583,8 +3381,6 @@ $$
 > From $\Sigma_K$ to $\Sigma$ using $-K$.
 > *This is always reversable.*
 
----
-
 Let us try to understand what feedback leaves invariant.
 
 > [!warning] Proposition 1
@@ -3635,8 +3431,6 @@ To relate $K$ and $\bar{K}$ it is sufficient to observe that:
 > [!info] Relation
 > $$\bar{F} + \bar{G}\bar{K} = T^{-1}FT + T^{-1}G\bar{K} = T^{-1}[F + G\underbrace{\bar{K}T^{-1}}_{K}]T$$
 
----
-
 ## Complete Eigenvalue Allocation Problem
 
 Let $F \in \mathbb{R}^{n \times n}$ and $G \in \mathbb{R}^{n \times m}$.
@@ -3658,8 +3452,6 @@ We want to proof if $(F,G)$ Reach. then the complete eigenvalue allocation of th
 
 1.  **Step 1)** We will prove that the result is true if single reachable systems ($m=1$).
 2.  **Step 2)** We will extend the result to the case $m>1$.
-
----
 
 ## 1st Step: The Case of Single Input Reachable Systems
 
@@ -3693,8 +3485,6 @@ $\Downarrow$
 $\text{rank } R = n$
 $\Downarrow$
 $(F,g)$ Reachable.
-
----
 
 $\Rightarrow$ We assure $(F,g)$ Reach. $\to$
 $R = [g | Fg | \dots | F^{n-1}g]$ has $n$ linearly indep. cols.
@@ -3746,11 +3536,7 @@ $$
 **Finally, we have to prove that:** $T^{-1}g = T g_c$
 $\iff g = T g_c = [v_1 | \dots | v_n] \begin{bmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{bmatrix} = v_n$. $\square$
 
----
-
-# L16
-
-## State-Feedback Recap
+### State-Feedback Recap
 
 $\Sigma = (F,G,H) \xrightarrow[u(t) = v(t) + Kx(t), K \in \mathbb{R}^{m \times n}]{} \Sigma_K (F+GK, G, H)$
 * $\dim \Sigma = n$
@@ -3785,8 +3571,6 @@ $$K = \bar{K} T^{-1}$$
 
 $\rightarrow (F+GK, G)$ Non Reach. with $\Delta_{F+GK}$ is a multiple of $\Delta_{F_{22}}$.
 
-# L17
-
 > [!info] Logic Flow
 > **Complete Eigenvalue Allocation Problem for a pair (F,G)**
 > $\equiv$
@@ -3810,8 +3594,6 @@ $$
 $$
 \Delta_{F_c}(s) = s^n + \sum_{i=0}^{n-1} a_i s^i
 $$
-
----
 
 For $(F_c, g_c)$ in controllable canonical form the complete eigenvalue allocation problem is solvable. Indeed, assume:
 $$p(s) = s^n + p_{n-1}s^{n-1} + \dots + p_1 s + p_0$$
@@ -3853,8 +3635,6 @@ $$
 
 *(Matching coefficients)*
 
----
-
 ### Remark:
 
 $F_c + g_c K_c$ is still in companion form and hence $(F_c + g_c K_c, g_c)$ is still in controllable form.
@@ -3889,8 +3669,6 @@ $\implies \Delta_{F+gK}(s) = p(s) \iff \Delta_{F_c+g_c K_c} \equiv p(s)$.
 
 $$F_c + g_c K_c = T^{-1}FT + T^{-1}g K_c = T^{-1} [F + g \underbrace{K_c T^{-1}}_{=K}] T$$
 
----
-
 ### Remarks:
 
 (1) From the proof we deduce that once we know that a pair $(F,g)$ is Reach. (if rank $R=n$), we can simply calculate $\Delta_F(s) = s^n + a_{n-1}s^{n-1} + \dots + a_0$ and immediately write the **Controllable Canonical Form** $(F_c, g_c)$ even without calculating $T$.
@@ -3899,6 +3677,18 @@ Indeed, once I've written $(F_c, g_c)$ I can calculate $R_c$ and use:
 $$
 \boxed{R_c} = \boxed{T^{-1}} \boxed{R} \quad \text{to deduce} \quad \boxed{T} = \boxed{R} \boxed{R_c}^{-1}
 $$
+
+### State Feedback: DT vs CT
+
+|                           | Discrete Time (DT)                                | Continuous Time (CT)                        |
+| :------------------------ | :------------------------------------------------ | ------------------------------------------- |
+| **Control Law**           | $u(k) = Kx(k) + v(k)$                             | $u(t) = Kx(t) + v(t)$                       |
+| **Closed Loop Dynamics**  | $x(k+1) = (F+GK)x(k) + Gv(k)$                     | $\dot{x}(t) = (F+GK)x(t) + Gv(t)$           |
+| **Reachability Property** | Feedback $u=Kx+v$ preserves Reachability          | Feedback $u=Kx+v$ preserves Reachability    |
+| **Eigenvalue Allocation** | Possible iff $(F,G)$ is Reachable                 | Possible iff $(F,G)$ is Reachable           |
+| **Target Polynomial**     | $p(z) = z^n + p_{n-1}z^{n-1} + \dots + p_0$       | $p(s) = s^n + p_{n-1}s^{n-1} + \dots + p_0$ |
+| **Stability Goal**        | Roots of $p(z)$ inside unit circle ($\lambda< 1$) | Roots of $p(s)$ in LHP ($Re(\lambda) < 0$)  |
+| **Canonical Form**        | $F_c, G_c$ structure identical to CT              | $F_c, G_c$ structure identical to DT        |
 
 (2) Since $F_c = T^{-1}FT$ then $\Delta_{F_c}(s) = \Delta_F(s) = s^n + a_{n-1}s^{n-1} + \dots + a_0$.
 
@@ -3930,9 +3720,7 @@ $$T^{-1}g = g_c = \begin{bmatrix} 0 \\ \vdots \\ 1 \end{bmatrix}$$
 > By (1) we can make this polynomial equal to $\bar{p}(s)$.
 > $\implies \Delta_{F+gK}(s) = p(s) = \bar{p}(s) \Delta_{F_{22}}(s)$.
 
----
-
-# Exerc. 1
+### Exerc. 1
 
 **Consider the DT SSM**
 $$x(t+1) = Fx(t) + Gu(t) = \begin{bmatrix} 0 & 1 & 0 \\ -1 & -2 & 0 \\ 0 & 1 & 1 \end{bmatrix} x(t) + \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} u(t)$$
@@ -3957,8 +3745,6 @@ $\implies a_2=1, a_1=-1, a_0=-1$ for the whole poly $z^3+z^2-z-1$.
 
 $$F_c = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 1 & -1 \end{bmatrix} \quad g_c = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
 *(From coeffs of $z^3+z^2-z-1$: $a_2=1 \to -1$, $a_1=-1 \to 1$, $a_0=-1 \to 1$)*.
-
----
 
 (2) We observe that $p(z) = (z - \frac{1}{2})^2 z = z^3 - z^2 + \frac{1}{4}z$.
 $a_3=1, a_2=-1, a_1=1/4, a_0=0$.
@@ -3990,9 +3776,7 @@ $$K = [-1 \ -5/4 \ 2] \begin{bmatrix} 0 & 0 & -1 \\ 0 & -1 & -1 \\ 1 & 1 & -1 \e
 * $z^3 + a_2(a,b,c)z^2 + a_1(a,b,c)z + a_0(a,b,c)$
 * $= -1, = 1/4, = 0$.
 
----
-
-# Exer 2:
+### Exer 2:
 
 Given the CT SSM
 $$\dot{x}(t) = Fx(t) + Gu(t) = \begin{bmatrix} -1 & 0 & 0 \\ 1 & 0 & 1 \\ 0 & -1 & 2 \end{bmatrix} x(t) + \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} u(t)$$
