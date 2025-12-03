@@ -496,7 +496,14 @@ $F = T J T^{-1}$, where $J = \text{diag}(J_1, \dots, J_r)$.
     *   **DT**: $f(\lambda) = \lambda^k$.
 
 ---
+### Cyclic Matrix
+A matrix $F$ is **Cyclic** if any of the following equivalent conditions hold:
+1.  $\exists g$ such that $(F,g)$ is Reachable.
+2.  Minimal Polynomial = Characteristic Polynomial ($\psi_F(s) = \Delta_F(s)$).
+3.  Each eigenvalue has **Geometric Multiplicity 1** (One Jordan block per eigenvalue).
+
 ---
+
 ## 4. Reachability & Controllability
 
 ### Definitions
@@ -529,16 +536,26 @@ If $F$ is in Jordan Form $J$:
 *   **Corollary**: For Single Input ($m=1$), Reachable $\iff$ One Jordan block per eigenvalue (Geometric Multiplicity = 1 for all $\lambda$).
 
 ### Gramians (Energy & Optimization)
-*   **Reachability Gramian** ($W_r(t)$ for CT, $W_k$ for DT):
-    $$
-    W_r(t) = \int_0^t e^{F\tau} G G^T e^{F^T\tau} d\tau
-    $$
-*   **Reachability Condition**: $W_r(t)$ is positive definite ($>0$) for any $t>0$.
-*   **Minimum Energy Control**: To go from $0$ to $x_f$ in time $t$:
-    $$
-    u_{opt}(\tau) = G^T e^{F^T(t-\tau)} W_r(t)^{-1} x_f
-    $$
-    Energy: $\|u\|^2 = x_f^T W_r(t)^{-1} x_f$.
+*   **Reachability Gramian** ($W_t$ for CT, $W_k$ for DT):
+    *   **CT**: $W_t = \int_0^t e^{F(t-\tau)} G G^T e^{F^T(t-\tau)} d\tau$
+    *   **DT**: $W_k = R_k R_k^T$ (where $R_k = [G \mid FG \mid \dots \mid F^{k-1}G]$)
+*   **Reachability Condition**: $W_t$ (or $W_k$) is positive definite (invertible) for $t>0$ (or $k \ge n$).
+
+### Point-to-Point Control (Minimum Energy)
+Problem: Steer state from $x_0$ to $x_f$ in time $t$ (or $k$).
+
+| Feature | Discrete Time (DT) | Continuous Time (CT) |
+| :--- | :--- | :--- |
+| **Solvability Condition** | $x_f - F^k x_0 \in \text{Im}(R_k)$ | $x_f - e^{Ft} x_0 \in \text{Im}(W_t)$ |
+| **Min Energy Input** $u_{opt}$ | $u(j) = G^T (F^T)^{k-1-j} W_k^{-1} (x_f - F^k x_0)$ | $u(\tau) = G^T e^{F^T(t-\tau)} W_t^{-1} (x_f - e^{Ft} x_0)$ |
+| **Min Energy Value** | $(x_f - F^k x_0)^T W_k^{-1} (x_f - F^k x_0)$ | $(x_f - e^{Ft} x_0)^T W_t^{-1} (x_f - e^{Ft} x_0)$ |
+
+### Controllability to Zero
+*   **Set of Controllable States** $X^C$: States that can be steered to 0.
+*   **CT**: $X^C = \text{Im}(R)$ (Same as Reachable set).
+*   **DT**: $X^C_k = \{ x : F^k x \in \text{Im}(R_k) \}$.
+    *   If $F$ is invertible (no 0 eigenvalues), $X^C = \text{Im}(R)$.
+    *   If $F$ is singular, $X^C$ can be larger than $\text{Im}(R)$.
 
 ### Standard Decomposition (Kalman)
 If $\text{rank}(R) = \rho < n$, there exists a transformation $T$ such that:
@@ -550,11 +567,19 @@ $$
 *   Eigenvalues of $F_{22}$ are the **Unreachable Modes** (cannot be moved).
 *   **Stability**: System is stabilizable if all Unreachable Modes ($F_{22}$) are stable.
 
-| Discrete Time (DT)                                                                                                                                                                                                                        | Continuous Time (CT)                                                                                                                                                                                                                                                                                                                             |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Reachability**<br><br>**Definition:** Reachable if $\exists u$ driving $x(0)=0$ to $x(k)=x_f$.<br><br>**Condition:**<br>$\text{rank } R_k = n$ (for $k \ge n$).<br>$R_k = [G                                                            | $[FG \| \dots \|F^{k-1}G]$<br><br>**Gramian:**<br>$W_k = R_k R_k^T$.<br>**Reachability**<br><br>**Definition:** Reachable if $\exists u$ driving $x(0)=0$ to $x(t)=x_f$.<br><br>**Condition:**<br>$\text{rank } R = n$.<br>$R = [G\|FG\| \dots \| F^{n-1}G]$.<br><br>**Gramian:**<br>$W_t = \int_0^t e^{F(t-\tau)} G G^T e^{F^T(t-\tau)} d\tau$. |
-| **Point-to-Point Control**<br><br>**Problem:** $x_0 \to x_f$ in time $k$.<br>**Solvability:** $x_f - F^k x_0 \in \text{Im } R_k$.<br>**Min Norm Solution:**<br>$\mathcal{U}_k^* = R_k^T (R_k R_k^T)^{-1} (x_f - F^k x_0)$ (if reachable). | **Point-to-Point Control**<br><br>**Problem:** $x_0 \to x_f$ in time $t$.<br>**Solvability:** $x_f - e^{Ft} x_0 \in \text{Im } R$.<br>**Min Norm Solution:**<br>$\mu^*(\cdot) = \mathcal{R}_t^* W_t^{-1} (x_f - e^{Ft} x_0)$ (if reachable).                                                                                                     |
-| **Controllability to Zero**<br><br>**Set:** $X_k^C = \{ x : F^k x \in \text{Im } R_k \}$.<br>If $F$ is singular, $X_k^C$ can be larger than $X^R$.                                                                                        | **Controllability to Zero**<br><br>**Set:** $X_t^C = e^{-Ft} X^R = X^R$.<br>In CT, the set of states controllable to zero coincides with the reachable subspace.                                                                                                                                                                                 |
+> [!success] Matrix Structures
+> $$
+> \bar{F} = T^{-1}FT = \left[ \begin{array}{c|c} F_{11} & F_{12} \\ \hline \mathbb{O} & F_{22} \end{array} \right] \begin{array}{l} \}\rho \\ \}n-\rho \end{array}
+> \qquad
+> \bar{G} = T^{-1}G = \left[ \begin{array}{c} G_1 \\ \hline \mathbb{O} \end{array} \right] \begin{array}{l} \}\rho \\ \}n-\rho \end{array}
+> $$
+> *Cols: $\rho, n-\rho$*
+
+| Discrete Time (DT)                                                                                                                                                                                                                            | Continuous Time (CT)                                                                                                                                                                                                                                                                                           |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Reachability**$[FG \| \dots \|F^{k-1}G]$<br><br>**Definition:** Reachable if $\exists u$ driving $x(0)=0$ to $x(k)=x_f$.<br><br>**Condition:**<br>$\text{rank } R_k = n$ (for $k \ge n$).<br>$R_k = [G \| FG \| F^2G \| \dots \| F^{n-1}G]$ | **Gramian:**<br>$W_k = R_k R_k^T$.<br>**Reachability**<br><br>**Definition:** Reachable if $\exists u$ driving $x(0)=0$ to $x(t)=x_f$.<br><br>**Condition:**<br>$\text{rank } R = n$.<br>$R = [G\|FG\| \dots \| F^{n-1}G]$.<br><br>**Gramian:**<br>$W_t = \int_0^t e^{F(t-\tau)} G G^T e^{F^T(t-\tau)} d\tau$. |
+| **Point-to-Point Control**<br><br>**Problem:** $x_0 \to x_f$ in time $k$.<br>**Solvability:** $x_f - F^k x_0 \in \text{Im } R_k$.<br>**Min Norm Solution:**<br>$\mathcal{U}_k^* = R_k^T (R_k R_k^T)^{-1} (x_f - F^k x_0)$ (if reachable).     | **Point-to-Point Control**<br><br>**Problem:** $x_0 \to x_f$ in time $t$.<br>**Solvability:** $x_f - e^{Ft} x_0 \in \text{Im } R$.<br>**Min Norm Solution:**<br>$\mu^*(\cdot) = \mathcal{R}_t^* W_t^{-1} (x_f - e^{Ft} x_0)$ (if reachable).                                                                   |
+| **Controllability to Zero**<br><br>**Set:** $X_k^C = \{ x : F^k x \in \text{Im } R_k \}$.<br>If $F$ is singular, $X_k^C$ can be larger than $X^R$.                                                                                            | **Controllability to Zero**<br><br>**Set:** $X_t^C = e^{-Ft} X^R = X^R$.<br>In CT, the set of states controllable to zero coincides with the reachable subspace.                                                                                                                                               |
 
 ---
 ---
@@ -577,15 +602,19 @@ $$
 (i.e., Unreachable modes must be stable).
 
 ### Formula for Single Input (Ackermann-like / Companion Form)
-1.  Check Reachability.
-2.  Calculate $\Delta_F(s) = s^n + a_{n-1}s^{n-1} + \dots + a_0$.
-3.  Define desired polynomial $p(s) = s^n + p_{n-1}s^{n-1} + \dots + p_0$.
-4.  If in **Controllable Canonical Form** ($F_c, g_c$):
+1.  **Check Reachability**: Compute $R = [g, Fg, \dots, F^{n-1}g]$. Rank must be $n$.
+2.  **Characteristic Polynomial**: Calculate $\Delta_F(s) = s^n + a_{n-1}s^{n-1} + \dots + a_0$.
+3.  **Target Polynomial**: Define desired $p(s) = s^n + p_{n-1}s^{n-1} + \dots + p_0$.
+4.  **Canonical Form Controller**:
     $$
     K_c = [a_0 - p_0, \ a_1 - p_1, \ \dots, \ a_{n-1} - p_{n-1}]
     $$
-    (Note: Signs might vary based on definition of $F_c$, check if bottom row is $-a_i$).
-5.  Transform back: $K = K_c T^{-1}$.
+    *(Note: This assumes $F_c$ has bottom row $[-a_0, \dots, -a_{n-1}]$)*.
+5.  **Transformation Matrix** $T$:
+    *   Construct $R_c = [g_c, F_c g_c, \dots]$ using $F_c, g_c$.
+    *   Calculate $T = R R_c^{-1}$.
+    *   Alternatively, compute rows of $T^{-1}$ using the "rows of R" method (see ST-MOD).
+6.  **Final Controller**: $K = K_c T^{-1}$.
 
 |                           | Discrete Time (DT)                                | Continuous Time (CT)                        |
 | :------------------------ | :------------------------------------------------ | ------------------------------------------- |
@@ -599,24 +628,33 @@ $$
 
 ---
 ---
-## 6. Exercise Cheat Sheet
+## Exercise Cheat Sheet
+### 1. Reachability Questions
+*   **Is the system Reachable?**
+    *   Compute $R = [G \mid FG \mid \dots]$. Check if $\text{rank}(R) = n$.
+    *   **Jordan Form**: Check if rows of $G$ corresponding to last rows of Jordan blocks are linearly independent.
+    *   **PBH**: Check $\text{rank}[\lambda I - F \mid G] = n$ for all eigenvalues.
+*   **Can I reach state $x_f$ from $0$?**
+    *   Check if $x_f \in \text{Im}(R)$.
+*   **Find input to reach $x_f$ (Min Energy):**
+    *   Calculate Gramian $W_t$ (or $W_k$).
+    *   Use formula: $u = G^T e^{F^T(t-\tau)} W^{-1} x_f$.
 
-### How to check Reachability?
-1.  Compute $R = [G \mid FG \mid \dots]$. Check Rank.
-2.  If $F$ is diagonal/Jordan: Check rows of $G$ corresponding to last rows of blocks.
-3.  If parameter $k$ is involved: Use PBH test on eigenvalues.
+### 2. Feedback & Stabilization
+*   **Can I stabilize the system?**
+    *   Check Reachability.
+    *   If **Reachable**: Yes, arbitrary pole placement possible.
+    *   If **Not Reachable**: Find Unreachable eigenvalues (where PBH rank drops).
+        *   If all Unreachable $\lambda$ are Stable $\implies$ **Stabilizable**.
+        *   If any Unreachable $\lambda$ is Unstable $\implies$ **Not Stabilizable**.
+*   **Find $K$ to assign eigenvalues:**
+    *   **Method 1 (Direct)**: Calculate $\det(sI - (F+GK))$, equate coefficients to target poly $p(s)$. Solve linear system.
+    *   **Method 2 (Canonical)**: Transform to $F_c$, find $K_c = [a_i - p_i]$, then $K = K_c T^{-1}$.
 
-### How to find Minimum Energy Input?
-1.  Compute Gramian $W_r(t)$.
-2.  Invert $W_r(t)$.
-3.  Apply formula $u(\tau) = B^T e^{A^T(t-\tau)} W^{-1} x_f$.
-
-### How to Stabilize / Assign Eigenvalues?
-1.  Check if Reachable.
-2.  If **Reachable**: All $\lambda$ can be moved.
-    *   Write $\det(sI - (F+GK)) = \text{desired poly}$.
-    *   Solve system of equations for entries of $K$.
-3.  If **Not Reachable**:
-    *   Find Unreachable eigenvalues (PBH rank drop).
-    *   If Unreachable $\lambda$ are stable $\to$ Stabilizable.
-    *   If Unreachable $\lambda$ are unstable $\to$ Not Stabilizable.
+### 3. Analysis
+*   **Is $F$ Cyclic?**
+    *   Check if Minimal Poly = Characteristic Poly.
+    *   Check if Geometric Multiplicity is 1 for all $\lambda$.
+*   **Stability Analysis**:
+    *   Check eigenvalues of $F$.
+    *   **Linearization**: Compute Jacobian $A = \frac{\partial f}{\partial x}$. Check eigenvalues of $A$.

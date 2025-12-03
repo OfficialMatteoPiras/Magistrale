@@ -2659,7 +2659,7 @@ We can always find additional $n-\rho$ vectors in $\mathbb{R}^n$, $w_{\rho+1}, \
 
 $$T = [v_1 | \dots | v_\rho || w_{\rho+1} | \dots | w_n] \in \mathbb{R}^{n \times n} \text{ is non singular}$$
 
-We want to understand how do $\bar{F}, \bar{G}$ change wrt to the basis through $T$ [where $\bar{F} = T^{-1}FT$ and $\bar{G} = T^{-1}G$].
+We want to understand how do $\bar{F}, \bar{G}$ change wrt to the basis through $T$ where $\bar{F} = T^{-1}FT$ and $\bar{G} = T^{-1}G$.
 
 From the fact that $\bar{F} = T^{-1}FT$ we deduce that $T\bar{F} = FT$ namely:
 $$[Fv_1 | \dots | Fv_\rho | Fw_{\rho+1} | \dots | Fw_n] = FT = T\bar{F} = [v_1 | \dots | v_\rho | w_{\rho+1} | \dots | w_n] \bar{F}$$
